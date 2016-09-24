@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.num{
+				width:50px;
+				height:16px;
+				float:left;
+				border:1px solid chartreuse;
+				line-height:16px;
+				
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		
+		<script>
+			var divList=document.getElementsByTagName('div');
+			var num=document.getElementsByClassName('num');
+			var str="";
+			for(var i=1;i<10;i++){
+				
+				for(var j=1;j<=i;j++){
+					str+='<div class="num">'+j+'x'+i+'='+i*j+'</div>'
+					
+				}
+				str+='</br>'
+				document.body.innerHTML=str;
+			}
+			
+			
+		</script>
+	</body>
+</html>

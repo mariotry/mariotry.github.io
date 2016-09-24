@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas width="1024" height="500" style="background:black;" id="canvas"></canvas>
+	<input type="file" name="" id="f">;
+	<script type="text/javascript">
+	var f = document.getElementById('f');
+	var canvas = document.getElementById('canvas');
+	var cgx= canvas.getContext("2d");
+	f.onchange = function(){
+		//先判断是否是audio文件。
+		//console.log(this.files[0]);
+		var file = this.files[0];
+		//创建音频分析对象。
+
+		
+		var fr = new FileReader();
+
+		fr.onload = function(ev){
+			var result = ev.target.result;
+
+			var context = new AudioContext();
+			/*
+			decodeAudioData解码文件
+				参数：
+					1、需要解码的文件。
+					2、回调函数，在解码成功之后调用。
+						回调函数有一个参数，是一个二进制数组。
+
+			*/
+			//解码文件。
+			
+			context.decodeAudioData(
+				result,
+				function(buffer){//解码成功调用该函数。
+						//buffer 以二进制数组表示的文件。
+					//创建音频节点。	
+					var source = context.createBufferSource();
+					//创建获取频谱能量值的analyser节点。
+					var analyser = context.createAnalyser();	
+					//系统扬声器的节点。
+					// console.log(context.destination);
+					//链接频谱
+					source.connect(analyser);
+					//链接系统扬声器节点。
+					analyser.connect(context.destination)
+					//添加播放数据。
+					source.buffer = buffer;
+					//开始播放
+					source.start(0);
+					//频谱长度analyser.frequencyBinCount
+					//解析频谱为二进制数组。
+					var array = new Uint8Array(analyser.frequencyBinCount);
+					var len = 100;
+					var n = Math.floor(array.length/len);
+					cgx.fillStyle = 'yellow';
+					(function(){
+						//获取到音频频率值。
+						analyser.getByteFrequencyData(array);
+						cgx.clearRect(0, 0, 1024, 500);
+
+						for(var i=0;i<len;i++){
+							cgx.fillRect(i*15, 500-array[i*n], 10, array[i*n]);
+						}
+						requestAnimationFrame(arguments.callee);
+					})();
+					
+
+				},
+				function(error){//解码失败调用这个函数。
+					console.log(error);
+				}
+			);
+
+		};
+		//解析为二进制的数组。
+		fr.readAsArrayBuffer(file);
+		
+	};
+	</script>
+</body>
+</html>

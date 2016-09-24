@@ -1,0 +1,101 @@
+#box{
+	width:300px;
+	height:200px;
+	border:5px solid darkturquoise;
+	position:relative;
+	margin:0px auto;
+	overflow:hidden;
+}
+
+img{
+	float:left;
+}
+#pic{
+	margin:0px;
+	padding:0px;
+	list-style:none;
+	position:absolute;
+	left:0px;
+	top:0px;
+
+}
+
+
+#btn1{
+	width:30px;
+	height:30px;
+	background:rgba(255,255,255,0.4);
+	position:absolute;
+	left:5px;
+	top:80px;
+	font-size:30px;
+	line-height:20px;
+	
+}
+#btn2{
+	width:30px;
+	height:30px;
+	background:rgba(255,255,255,0.4);
+	position:absolute;
+	right:5px;
+	top:80px;
+	font-size:30px;
+	line-height:20px;
+}
+#dotgroup{
+	width:60px;
+	height:15px;
+
+	position:absolute;
+	left:120px;
+	bottom:5px;
+}
+#dotgroup span{
+	width:10px;
+	height:10px;
+	background:yellow;
+	border-radius:8px;
+	float:left;
+	margin-left:5px;
+	margin-top:2px;
+}
+#dotgroup .color{
+	background:red;
+}
+.list{
+	width:300px;
+	height:200px;
+	float:left;
+}
+#dotgroup .active{
+	background:red;
+	
+}
+
+#bg{
+	width:100%;
+	height:40px;
+	background:black;
+	position:absolute;
+	top:0px;
+	left:0px;
+	text-align:center;
+	opacity:1;
+}
+#title{
+	width:100%;
+	height:14px;
+	float:left;
+	color:yellow;
+	font-size:14px;
+	text-align:left;
+	margin-left:20px;
+	margin-top:9px;
+}
+#content{
+	width:100%;
+	height:15px;
+	float:left;
+	color:#fff;
+	font-size:12px;
+}

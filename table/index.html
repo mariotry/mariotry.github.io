@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			table{
+				width:100%;
+				border:1px solid black;
+			}
+			th,td{
+				border:1px solid black;
+				text-align:center;
+			}
+			/*css版隔行换色*/
+			/*table tr:nth-child(even)  {background-color: #ccc;}  
+			table  tr:nth-child(odd) {background-color: #ppp;}  */
+			
+		</style>
+	</head>
+	<body>
+		<form action="">
+			姓名：<input type="text" class="text1"/>
+			年龄：<input type="text" class="text1"/>
+			性别：<select name="" id="sex">
+				<option value="男">男</option>
+				<option value="女">女</option>
+			</select>
+			<input type="button" value="添加" id="btn1"/>
+			
+			<br/>
+			<br/>
+			排序：<select name="sel" id="">
+					<option value="编号" class="way1">编号</option>
+					<option value="年龄" class="way1">年龄</option>
+				</select>
+				<select name="sel2" id="">
+					<option value="升序" class="way2">升序</option>
+					<option value="降序" class="way2">降序</option>
+				</select>
+				<input type="button" id="sort" value="点击排序"/>
+			<br/>
+			<br/>
+			搜索：<input type="text" id="search"/>
+				<input type="button" value="确定" id="confirm"/>
+			
+		</form>
+		<br/>
+		<br/>
+		<table id="tab">
+			<thead>
+				<tr style="background:pink">
+					<th><input type="checkbox"  id="allCheck"/>全选</th>
+					<th>编号</th>
+					<th>姓名</th>
+					<th>年龄</th>
+					<th>性别</th>
+					<th style="width:277px">操作</th>
+					<th >移动</th>
+				</tr>
+				
+			</thead>
+			<tbody>	</tbody>
+		</table>
+		
+	</body>
+	<script>
+		
+		
+		var tab = document.getElementById('tab');
+		var tbody = tab.tBodies[0];
+		var form = document.getElementsByTagName('form')[0];
+		var btn1 = document.getElementById('btn1');
+		var text1 = form.getElementsByClassName('text1');
+//		var n=1;
+		var sex = document.getElementById('sex');
+		var option = sex.getElementsByTagName('option');
+		var tr = document.getElementsByTagName('tr');
+//		动态生成表格
+		
+		function fn(arr){
+			for(var i=0;i<arr.length;i++){
+
+				var tr = document.createElement('tr');
+				var td = document.createElement('td');
+				var input = document.createElement('input');
+				input.className='someoneCheck'
+				input.type='checkbox';
+				td.appendChild(input);
+				tr.appendChild(td);
+				
+				var td = document.createElement('td');
+				tr.appendChild(td);
+				
+				for(attr in arr[i]){
+					var td = document.createElement('td');
+					td.innerHTML=arr[i][attr];
+					tr.appendChild(td);
+				}
+				var a = document.createElement('a');
+				a.href='javascript:;'
+				a.innerHTML='删除';
+				var td = document.createElement('td');
+				td.appendChild(a);
+				tr.appendChild(td);
+								
+				var td = document.createElement('td');
+				var input = document.createElement('input');
+				input.type='button';
+				input.value='上移';
+				input.style.marginRight=20+'px';
+				td.appendChild(input);
+				var input = document.createElement('input')
+				input.type='button';
+				input.value='下移';
+				td.appendChild(input);
+				td.style.width=200+'px';
+				tr.appendChild(td);
+				tbody.appendChild(tr);
+				var as = document.getElementsByTagName('a');
+				del(as);
+				yy();
+				changeT();
+			}
+		}
+		
+//		1点击按钮添加人到表格
+		btn1.onclick=function(){
+			var arr2=[];
+			var obj={};
+			var num=0;
+			for(var i=0;i<text1.length;i++){
+				if(text1[0].value==''){
+					alert('请输入姓名')
+					return;
+				}
+				if(text1[1].value==''){
+					alert('请输入年龄');
+					return;
+				}
+				if(isNaN(text1[1].value)){
+					alert('请输入正确的年龄');
+					return;
+				}
+				obj[num]=text1[i].value;
+				num++;
+			}
+				obj[num]=option[form.sex.selectedIndex].value;
+			arr2.push(obj);
+			//console.log(arr2);
+			fn(arr2);
+			changeBackground();
+			var as = document.getElementsByTagName('a')
+			del(as);
+			xuanze();
+		}
+		
+//		2隔行变色
+		function changeBackground(){
+			var tr = tbody.getElementsByTagName('tr');
+			//console.log(trs.length);
+			for(var i=0;i<tr.length;i++){
+				if(i%2==0){
+					tr[i].style.background='#FFFEBC'
+				}else{
+					tr[i].style.background='#BCFFCA'
+				}
+			}
+		}
+		changeBackground();
+//		3删除行
+		function del(allA){
+			for(var i=0;i<allA.length;i++){
+				allA[i].index=i;
+				allA[i].onclick=function(){
+					tbody.removeChild(this.parentElement.parentElement);
+					
+					changeBackground();
+					var as = document.getElementsByTagName('a');
+					del(as);
+					xuanze();
+					changeT();
+				}
+			}
+		}
+		//4全选+高亮
+		
+		var allCheck = document.getElementById('allCheck');
+		
+		var m=0;
+		//console.log(someoneCheck);
+		
+		xuanze();
+		function xuanze(){
+			var someoneCheck = document.getElementsByClassName('someoneCheck');
+			allCheck.onclick=function(){
+				for(var i=0;i<someoneCheck.length;i++){
+					if(this.checked){
+						someoneCheck[i].checked=true;
+						someoneCheck[i].parentElement.parentElement.style.backgroundColor='#D2D2D2';
+						m=someoneCheck.length;
+					}else{
+						someoneCheck[i].checked=false;
+						changeBackground();
+						m=0;
+					}
+				}
+			}
+			for(var i=0;i<someoneCheck.length;i++){
+				someoneCheck[i].index=i;
+				someoneCheck[i].onclick=function(){
+					console.log(this.index);
+					if(this.checked==true){
+						m++;
+						this.parentElement.parentElement.style.backgroundColor='#D2D2D2';
+					}else{
+						m--;
+						if(this.index%2==0){
+							console.log(this.index);
+							this.parentElement.parentElement.style.background='#FFFEBC'
+						}else{
+							this.parentElement.parentElement.style.background='#BCFFCA'
+						}
+					}
+					if(m==someoneCheck.length){
+						allCheck.checked=true;
+					}else{
+						allCheck.checked=false;
+					}
+					//console.log(m);
+				}
+			}
+		}
+		
+		
+		//6排序
+		
+		paixu();
+		function paixu(){
+			var sort = document.getElementById('sort');
+			sort.onclick=function(){
+				if(form.sel.value=='编号'&&form.sel2.value=='降序'){
+					order(1);
+				}
+				if(form.sel.value=='编号'&&form.sel2.value=='升序'){
+					order2(1);
+				}
+				if(form.sel.value=='年龄'&&form.sel2.value=='降序'){
+					order(3);
+				}
+				if(form.sel.value=='年龄'&&form.sel2.value=='升序'){
+					order2(3);
+				}
+				xuanze();
+			}
+				
+			
+			function order(nm){
+				var tr = tbody.getElementsByTagName('tr');
+				alert(6);
+				for(var j=0;j<tr.length-1;j++){
+					for(var i=0;i<tr.length-1-j;i++){
+						//console.log(tr[i+1]);
+						var	a=parseInt(tr[i].children[nm].innerHTML);
+						var	b=parseInt(tr[i+1].children[nm].innerHTML);
+						if(a<b){
+							tbody.insertBefore(tr[i+1],tr[i]);
+						}
+					}
+				}
+				changeBackground();
+			}
+			function order2(nm){
+				var tr = tbody.getElementsByTagName('tr');
+				alert(88);
+				for(var j=0;j<tr.length-1;j++){
+					for(var i=0;i<tr.length-1-j;i++){
+						console.log(tr[i+1]);
+						var	a=parseInt(tr[i].children[nm].innerHTML);
+						var	b=parseInt(tr[i+1].children[nm].innerHTML);
+						if(a>b){
+							tbody.insertBefore(tr[i+1],tr[i]);
+						}
+					}
+				}
+				changeBackground();
+			}
+			
+		}
+	
+		//5上移 下移	
+		yy();
+		function yy(){
+			var tr = tbody.getElementsByTagName('tr');
+			for(var i=0;i<tr.length;i++){
+				var move = tr[i].lastElementChild.children;
+				moveFn(move);
+			}
+			function moveFn(yd){
+				yd[0].onclick=function(){
+					if(this.parentElement.parentElement.previousElementSibling){
+						tbody.insertBefore(this.parentElement.parentElement,this.parentElement.parentElement.previousElementSibling);
+						changeBackground();
+					}
+					xuanze();
+				}
+				yd[1].onclick=function(){
+					if(this.parentElement.parentElement.nextElementSibling){
+						tbody.insertBefore(this.parentElement.parentElement.nextElementSibling,this.parentElement.parentElement);
+						changeBackground();
+					}
+					xuanze();
+					changeT();
+				}
+			}
+		}
+		//搜索
+		var confirm = document.getElementById('confirm');
+		var search = document.getElementById('search');
+		confirm.onclick=function(){
+			for(var i=0;i<tr.length;i++){
+				if(i%2==0){
+					tr[i].style.background='#FFFEBC'
+				}else{
+					tr[i].style.background='#BCFFCA'
+				}
+			}
+			if(search.value==''){
+				alert('请输入要搜索的内容');
+			}
+
+			for(var i=0;i<tr.length;i++){ 
+				tr[i].index=i;
+				if(tr[i].children[2].innerHTML==search.value){
+					tr[i].style.background="#D2D2D2";
+					break;
+				}else{
+					if(i==tr.length-1){
+						alert('没找到您要搜索的内容');
+					}
+				}
+			}
+			
+		}
+		//自动生成编号
+		function changeT(){
+			var tr = tbody.getElementsByTagName('tr');
+			for(var i=0;i<tr.length;i++){
+				var t=i+1;
+				tr[i].cells[1].innerHTML=t;0
+			}
+		}
+
+	</script>
+</html>

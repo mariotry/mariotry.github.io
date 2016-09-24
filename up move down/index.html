@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul,li{
+				padding:0px;
+				margin:0px;
+				list-style:none;
+			}
+			span{
+				width:100px;
+				font-size:22px;
+				font-weight:bold;
+				float:left;
+				
+			}
+			
+			li{
+				width:300px;
+				height:30px;
+				line-height:30px;
+				position:absolute;
+				left:0px;
+				transition:1s;
+			}
+			li:nth-of-type(1){
+				top:0px;
+			}
+			li:nth-of-type(2){
+				top:30px;
+			}
+			li:nth-of-type(3){
+				top:60px;
+			}
+			li:nth-of-type(4){
+				top:90px;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="list">
+			<li style="background:red">
+				<span >111</span>
+				<input type="button" value="上移" class="btn1" />
+				<input type="button" value="下移" class="btn2" />
+			</li >
+			<li style="background:orange">
+				<span >222</span>
+				<input type="button" value="上移" class="btn1" />
+				<input type="button" value="下移" class="btn2" />
+			</li>
+			<li style="background:yellow">
+				<span >333</span>
+				<input type="button" value="上移" class="btn1" />
+				<input type="button" value="下移" class="btn2" />
+			</li>
+			<li style="background:green">
+				<span >444</span>
+				<input type="button" value="上移" class="btn1" />
+				<input type="button" value="下移" class="btn2" />
+			</li>
+		</ul>
+	</body>
+	<script>
+		var list = document.getElementById('list');
+		var li = list.getElementsByTagName('li');
+
+		for(var i=0;i<li.length;i++){
+			fn(i);
+		}
+		function fn(n){
+			var btn1 = li[n].getElementsByClassName('btn1');
+			var btn2 = li[n].getElementsByClassName('btn2');
+			
+			
+			btn1[0].onclick=function(){
+				for(var i=0;i<li.length;i++){
+				list.children[i].index=i;
+				}
+				console.log(this.parentNode.index);
+				if(this.parentNode.previousElementSibling){
+				//	this.parentNode.style.top=(this.parentNode.index-1)*30+'px';
+				//	this.parentNode.previousElementSibling.style.top=this.parentNode.index*30+'px';
+					list.insertBefore(this.parentNode, this.parentNode.previousElementSibling);
+					
+				}
+			}
+			btn2[0].onclick=function(){
+				if(this.parentNode.nextElementSibling){
+					list.insertBefore(this.parentNode.nextElementSibling,this.parentNode);	
+				}
+			}
+		}
+		
+	</script>
+</html>

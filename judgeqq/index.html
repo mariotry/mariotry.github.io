@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style>
+		body{
+			margin:100px auto;
+		}
+		
+	</style>
+	<body>
+		<span id='aa'>请输入qq号码</span>
+		<input type="button" id="btn" value="判断">
+		<input type="text" id='text' >
+		
+	</body>
+	
+	<script>
+//	1.需求
+//	当点击判断按钮时：
+
+//	确定有没有输入文字
+//	输入的是不是数字
+//	不能有0在前面
+//	不能是小数
+//	输入的数字必须在5位以上 10位以内;
+	
+		var qq=document.getElementById('text');
+		var btn=document.getElementById('btn');
+		btn.onclick=function(){
+		
+			if(qq.value==''){
+			alert('没有输入文字')
+			}else if(isNaN(qq.value)){
+				alert('请输入正确数字')
+			}else if(parseInt(qq.value)!=qq.value){
+				alert('请输入整数')
+			}else if(qq.value.length<5 ||qq.value.length>10){
+				alert('输入正确的位数')
+			}else if(qq.value.charAt(0)==0){
+				alert('第一位不能是0');
+			}
+			
+			
+		}
+		
+	</script>
+</html>

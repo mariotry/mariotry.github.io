@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#child{
+				width:80px;
+				height:80px;
+				background:url(1.jpg) no-repeat;
+				background-size:80px 80px;
+				position:absolute;
+				left:0px;
+				top:0px;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="child"></div>
+	</body>
+	<script>
+		var child = document.getElementById('child');
+		var speenX=0;
+		var speenY=0;
+		document.onkeydown=function(e){
+			console.log(5);
+			if(e.which==37){
+				speenX=-10;
+			}
+			if(e.which==38){
+				speenY=-10;
+			}
+			if(e.which==39){
+				speenX=10;
+			}
+			if(e.which==40){
+				speenY=10;
+			}
+			if(e.which==32){
+				speenY=-10;
+			}
+		}
+		document.onkeyup=function(e){
+			if(e.which==37||e.which==39){
+				speenX=0;
+			}
+			if(e.which==38||e.which==40){
+				speenY=0;
+			}
+		}
+		setInterval(function(){
+//			if(child.getBoundingClientRect().top>=window.innerHeight-child.offsetHeight){
+//				child.getBoundingClientRect().top=window.innerHeight-child.offsetHeight;
+//			}
+			if(child.getBoundingClientRect().top<=window.innerHeight-child.offsetHeight-150){
+				speenY=10;
+			}
+			
+			var t=child.getBoundingClientRect().top+speenY;
+			if(t>=window.innerHeight-child.offsetHeight){
+				t=window.innerHeight-child.offsetHeight;
+			}
+			child.style.left=child.getBoundingClientRect().left+speenX+'px';
+			child.style.top=t+'px';
+		},16)
+	</script>
+</html>

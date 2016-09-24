@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width:480px;
+				height:250px;
+			}
+			ul,li{
+				margin:0px;
+				padding:0px;
+				list-style:none;
+			}
+			#title{
+				width:300px;
+				height:40px;
+			}
+			h3{
+				width:98px;
+				height:40px;
+				float:left;
+				border:1px solid black;
+				line-height:40px;
+				text-align:center;
+				background:white;
+				margin:0px;
+				padding:0px;
+			}
+			.nav{
+				
+				background:#666;
+				color:#fff;
+			}
+			#banner-wrap{
+				width:450px;
+				height:150px;
+				border:1px solid darkgray;
+				padding:10px;
+				
+			}
+			.pic{
+				width:200px;
+				height:150px;
+				float:left;
+			}
+			ul{
+				width:220px;
+				float:left;
+				margin-left:20px;
+			}
+			li{
+				width:218px;
+				height:48px;
+				border:1px solid #fff;
+				background:silver;
+				text-align:center;
+				line-height:48px;
+			}
+			.banner{
+				display:none;
+			}
+			
+		</style>
+		<script src="mTween2.js"></script>
+		
+	</head>
+	<body>
+		<div id="box">
+			<div id="title">
+				<h3 class="nav">专题</h3>
+				<h3 >视频</h3>
+				<h3 >娱乐</h3>
+			</div>
+			<div id="banner-wrap">
+				<div class="banner" style=display:block>
+					<div class="pic">
+						<img src="img/1.jpg" alt="" />
+					</div>
+					<ul >
+						<li class="nav">一心一意</li>
+						<li>一心一意</li>
+						<li>一心一意</li>
+						<li>一心一意</li>
+					</ul>
+				</div>
+				<div class="banner" >
+					<div class="pic">
+						<img src="img/2.jpg" alt="" />
+					</div>
+					<ul >
+						<li class="nav">二心二意</li>
+						<li>二心二意</li>
+						<li>二心二意</li>
+						<li>二心二意</li>
+					</ul>
+				</div>
+				<div class="banner" >
+					<div class="pic">
+						<img src="img/3.jpg" alt="" />
+					</div>
+					<ul >
+						<li class="nav">三心二意</li>
+						<li>三心二意</li>
+						<li>三心二意</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+//	获取元素
+		var h3 = document.getElementsByTagName('h3');
+		var banner = document.getElementsByClassName('banner');
+		var status=0;
+		var num=0;
+		var timer=null;
+		var last=0;
+
+//		封装函数,动态获取li;
+		function getLi(n){
+			return banner[n].getElementsByTagName('li');
+		}
+		
+		function change(li){
+//			设置定时器
+			timer=setInterval(function(){
+//				记录li的状态,每执行一次定时器,num便自增一次
+				num++;
+//				首先先把整个li的className清空
+				for(var i=0;i<li.length;i++){
+					li[i].className='';
+				}
+//				如果num大于li的长度时
+				if(num>li.length-1){
+//					首先清除定时器
+					clearInterval(timer);
+//					第一个li的className变为nav;
+					li[0].className='nav';
+//					重置num;这样每次li都会从第一个开始变className;
+					num=0;
+//					记录上面Tab的状态在第几个
+					status++;
+//					给Tab设置活动范围
+				var t=status%h3.length;	
+					for(var i=0;i<h3.length;i++){
+//						每当一轮li循环完毕,就要开始变换Tab了,首先把所有的Tab的className都清空,
+//						并且所有的banner隐藏
+						h3[i].className='';
+						banner[i].style.display='';
+					}
+//					随着status的改变,t的值也会相应改变,清空完以后,那Tab的第t个className变为nav;
+					h3[t].className='nav';
+//					因为Tab的数量和banner的数量是一样的,所有它们可以用一样的下标,当Tab变换className时,banner的第t个也要立即显示出来
+					banner[t].style.display='block';
+//					重复调用以上的方法
+//					当第一轮走完,t变为1,li就变为第一个banner下面的li了,现在的num已经变为0了,
+//					li的num个又开始一个一个的变className;由此执行以上的代码,一遍一遍……
+					change(getLi(t));
+//					自动轮播时,当鼠标移入时,自动移入的这个tab值记录为上一个
+					last=t;
+					
+				}else{
+//					如果num没有大于li的长度时，li的第num个变className;
+					li[num].className='nav';
+				}
+				
+			},500);
+			
+		}
+		change(getLi(0));
+		for(var i=0;i<h3.length;i++){
+//			添加索引值
+			h3[i].index=i;
+//			添加鼠标移入事件
+			h3[i].onmouseover=function(){
+//				鼠标移入时先清除定时器
+				clearInterval(timer);
+//				当鼠标移入的是className为nav的tab时
+//				在if外面的代码表示不是className为nav的;
+				if(this.className!='nav'){
+//					重置num的值;
+					num=0;
+//					当前这个tab对应的第一个li的className为nav;
+					getLi(this.index)[num].className='nav';
+//					记录上一个li的值（上一个）;
+					var lastLi=getLi(last);
+//					清空上一组li的class
+					for(var i=0;i<lastLi.length;i++){
+						lastLi[i].className='';
+					}
+//					把上一组li的第一个class设为nav
+					lastLi[0].className='nav';
+				}
+//				清空tab,隐藏所有banner;
+				for(var i=0;i<h3.length;i++){
+						h3[i].className='';
+						banner[i].style.display='';
+				}
+//				给当前的li设class为nav;
+				this.className='nav';
+//				banner为tab下标的显示;
+				banner[this.index].style.display="block";
+//				在每次点这个tab时,那它就变为上一次了,即last;及时更新值；
+				last=this.index;
+				status=this.index;
+			}
+			h3[i].onmouseout=function(){
+//				鼠标移出时,从当前对应的tab的li开始轮播;
+				change(getLi(this.index));
+			}
+			nav(getLi(i));
+//			所以在这里调用这个函数;
+//			当鼠标移入或移出哪个tab时,那对应的哪个banner下的li?    banner的下标就是这个tab的下标;
+		}
+		
+		
+		function nav(li){
+			for(var i=0;i<li.length;i++){
+				li[i].index=i;
+				li[i].onmouseover=function(){
+//					移入li时,清空所有li的class;
+					clearInterval(timer);
+					for(var i=0;i<li.length;i++){
+						li[i].className='';
+					}
+//					把当前移入的li加上class nav;
+//					记录li的下标要和这个一致,及时修改
+					this.className='nav';
+					num=this.index;
+				}
+				li[i].onmouseout=function(){
+					change(li);
+//					鼠标移出li时,要执行轮播代码;并找到当前这一组li;
+				}
+			}
+		}
+		
+	</script>
+</html>

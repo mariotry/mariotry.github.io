@@ -1,0 +1,29 @@
+#text{
+	width:85px;
+	height:30px;
+	font:bold 16px/30px "微软雅黑";
+	float:left;
+}
+.xx{
+	width:20px;
+	height:20px;
+	float:left;
+	background:url(../img/2X.jpg);
+	margin-top:6px;
+
+}
+#tishi{
+	width:242px;
+	height:42px;
+	background:url(../img/TISHI.jpg);
+	float:left;
+}
+#pinjia{
+	width:30px;
+	height:30px;
+	font-size:14px;
+	line-height:32px;
+	float:left;
+	color:red;
+	display:none;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        #box{
+            width:200px;
+            height:200px;
+            background:pink;
+            position:absolute;
+            left:500px;
+            top:300px;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+<script type="text/javascript">
+    var box = document.getElementById('box');
+    box.onmousedown=function(e){
+        var boxWidth = box.offsetWidth;
+        var boxHeight = box.offsetHeight;
+        var boxLeft = box.offsetLeft;
+        var boxTop = box.offsetTop;
+        var beginX = e.clientX;
+        var beginY = e.clientY;
+        var b='';
+        //console.log(boxWidth);
+        if(e.clientX>boxWidth+boxLeft-10){
+            b='right';
+        }
+        if(e.clientX<boxLeft+10){
+            b='left';
+        }
+        if(e.clientY<boxTop+10){
+            b='top';
+        }
+        if(e.clientY>boxTop+boxHeight-10){
+            b='bottom';
+        }
+        document.onmousemove=function(e){
+            switch(b){
+                case 'right':
+                box.style.width=boxWidth+(e.clientX-beginX)+'px';
+                break;
+                case 'left':
+                box.style.width=boxWidth-(e.clientX-beginX)+'px';
+                box.style.left=boxLeft+(e.clientX-beginX)+'px';
+                break;
+                case 'bottom':
+                box.style.height=boxHeight+e.clientY-beginY+'px';
+                break;
+                case 'top':
+                console.log(boxHeight,e.clientY,beginY);
+                box.style.height=boxHeight-(e.clientY-beginY)+'px';
+                box.style.top=boxTop+(e.clientY-beginY)+'px';
+                break;
+            }
+        }
+    
+        document.onmouseup=function(){
+            document.onmousemove=null;
+        }
+        return false;
+    }
+</script>
+</html>

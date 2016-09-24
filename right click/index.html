@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box1,#box2{
+				width:120px;
+				height:40px;
+				float:left;
+				margin:80px 50px 0 300px;
+				border:1px solid slateblue;
+				line-height:40px;
+				text-align:center;
+				
+			}
+			ul,li{
+				padding:0px;
+				margin:0px;
+				list-style:none;
+			}
+			ul{
+				width:120px;
+				border:1px solid #fff;
+				position:absolute;
+				left:0px;
+				top:0px;
+				display:none;
+				background:pink;
+			}
+			li{
+				width:120px;
+				height:48px;
+				line-height:48px;
+				text-align:center;
+				float:left;
+				border-top:1px  solid #fff;
+				border-bottom:1px  solid #fff;
+			}
+			li:hover{
+				background:greenyellow;
+			}
+		</style>
+		<script src="data.js"></script>
+	</head>
+	<body>
+		<div id="box1">文件一</div>
+		<div id="box2">文件二</div>
+		<ul>
+			<!--<li>打开</li>
+			<li>复制</li>
+			<li>粘贴</li>
+			<li>重命名</li>-->
+		</ul>
+	</body>
+	<script>
+		var box1 = document.getElementById('box1');
+		var box2 = document.getElementById('box2');
+		var ul = document.getElementsByTagName('ul')[0];
+		var n=-1;	
+		function fn(e){
+			ul.style.left=e.clientX+'px';
+			ul.style.top=e.clientY+'px';
+		}
+		document.addEventListener('mousedown',fn);
+		function fn2(e){
+			n=-1;
+			e.preventDefault();
+			ul.style.display="block";
+			console.log(this.innerHTML);
+			if(this.innerHTML=='文件一'){
+				create(data[0].arr);
+			}else{
+				create(data[0].arr2);
+			}
+		}
+		function fn3(){
+			ul.style.display="none";
+		}
+		box1.addEventListener('contextmenu',fn2);
+		box2.addEventListener('contextmenu',fn2);
+		document.addEventListener('mousedown',fn3);
+		function create(who){
+			ul.innerHTML='';
+			for(var i=0;i<who.length;i++){
+				var li = document.createElement('li');
+				li.innerHTML=who[i];
+				ul.appendChild(li);
+				var li = document.getElementsByTagName('li');
+				//li[0].style.background="greenyellow";
+			}
+		}
+		
+		function fn4(e){
+			var li = document.getElementsByTagName('li');
+			if(e.which==40){
+				n++;
+				console.log(n);
+				for(var i=0;i<li.length;i++){
+					li[i].style.background="pink";
+				}
+				if(n>=li.length){
+					n=0;
+				}
+				li[n].style.background="greenyellow";
+				
+			}
+			if(e.which==38){
+				n--;
+				for(var i=0;i<li.length;i++){
+					var num=li.length-1;
+					li[i].style.background="pink";
+				}
+				if(n<0){
+					n=num;
+				}
+				console.log(n);
+				li[n].style.background="greenyellow";
+			}
+		}
+		document.addEventListener('keydown',fn4);
+	</script>
+</html>
+<!--e.Preventdefault()-->

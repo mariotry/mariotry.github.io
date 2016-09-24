@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul,li,h3{
+				margin:0px;
+				padding:0px;
+				list-style:none;
+			}
+			h3{
+				font-size:20px;
+				height:35px;
+				line-height:35px;
+				
+			}
+			
+			.tier{
+				
+				display:none;
+			}
+			
+			ul{
+				margin-left:20px;
+			}
+			.active{
+				display:block;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="one-line">
+			<li>
+				<h3><span>+</span>第一级</h3>
+				<ul class="tier" >
+					<li>
+						<h3><span>+</span>第二级</h3>
+						<ul class="tier">
+							<li>
+								<h3><span>+</span>第三级</h3>
+								<ul class="tier">
+									<li>
+										<h3><span>+</span>第四级</h3>
+									</li>
+									<li>
+										<h3><span>+</span>第四级</h3>
+									</li>
+									<li>
+										<h3><span>+</span>第四级</h3>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<h3><span>+</span>第三级</h3>
+							</li>
+							<li>
+								<h3><span>+</span>第三级</h3>
+							</li>
+							
+						</ul>
+					</li>
+					<li>
+						<h3><span>+</span>第二级</h3>
+					</li>
+					<li>
+						<h3><span>+</span>第二级</h3>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<h3><span>+</span>第一级</h3>
+				<ul class="tier" >
+					<li>
+						<h3><span>+</span>第二级</h3>
+						<ul class="tier">
+							<li>
+								<h3><span>+</span>第三级</h3>
+								<ul class="tier">
+									<li>
+										<h3><span>+</span>第四级</h3>
+									</li>
+									<li>
+										<h3><span>+</span>第四级</h3>
+									</li>
+									<li>
+										<h3><span>+</span>第四级</h3>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<h3><span>+</span>第三级</h3>
+							</li>
+							<li>
+								<h3><span>+</span>第三级</h3>
+							</li>
+							
+						</ul>
+					</li>
+					<li>
+						<h3><span>+</span>第二级</h3>
+					</li>
+					<li>
+						<h3><span>+</span>第二级</h3>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<h3><span>+</span>第一级</h3>
+				<ul class="tier">
+					<li>
+						<h3><span>+</span>第二级</h3>
+						<ul class="tier">
+							<li>
+								<h3><span>+</span>第三级</h3>
+								<ul class="tier">
+									<li>
+										<h3><span>+</span>第四级</h3>
+									</li>
+									<li>
+										<h3><span>+</span>第四级</h3>
+									</li>
+									<li>
+										<h3><span>+</span>第四级</h3>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<h3><span>+</span>第三级</h3>
+							</li>
+							<li>
+								<h3><span>+</span>第三级</h3>
+							</li>
+							
+						</ul>
+					</li>
+					<li>
+						<h3><span>+</span>第二级</h3>
+					</li>
+					<li>
+						<h3><span>+</span>第二级</h3>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<h3><span>+</span>第一级</h3>
+				<ul class="tier">
+					<li>
+						<h3><span>+</span>第二级</h3>
+						<ul class="tier">
+							<li>
+								<h3><span>+</span>第三级</h3>
+								<ul class="tier">
+									<li>
+										<h3><span>+</span>第四级</h3>
+									</li>
+									<li>
+										<h3><span>+</span>第四级</h3>
+									</li>
+									<li>
+										<h3><span>+</span>第四级</h3>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<h3><span>+</span>第三级</h3>
+							</li>
+							<li>
+								<h3><span>+</span>第三级</h3>
+							</li>
+							
+						</ul>
+					</li>
+					<li>
+						<h3><span>+</span>第二级</h3>
+					</li>
+					<li>
+						<h3><span>+</span>第二级</h3>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</body>
+	<script>
+		var oneLine = document.getElementById('one-line');
+		var h3 = oneLine.getElementsByTagName('h3');
+		
+			for(var i=0;i<h3.length;i++){
+				h3[i].onclick=function(){
+					var one=this.nextElementSibling;
+					var allUl=this.parentNode.parentNode.getElementsByTagName('ul');
+					console.log(allUl);
+					if(!one){
+						return;
+					}
+					if(one.className=='active'){
+						one.className='tier';
+						this.children[0].innerHTML='+';
+						console.log(this.children[0]);
+					}else{
+						for(var i=0;i<allUl.length;i++){
+						allUl[i].className='tier';
+						allUl[i].previousElementSibling.children[0].innerHTML='+';
+						}
+							
+						one.className='active';
+						this.children[0].innerHTML='-';
+					}
+				}
+			}
+	</script>
+</html>

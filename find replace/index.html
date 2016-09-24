@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:600px;
+				height:400px;
+				padding-top:40px;
+				background:turquoise;
+				padding-left:30px;
+				position:relative;
+			}
+			#text{
+				width:400px;
+				height:200px;
+				background:#fff;
+				padding:25px;
+			}
+			#find{
+				width:410px;
+				height:100px;
+				background:wheat;
+				border:5px solid red;
+				margin-top:20px;
+				padding-left:30px;
+				position:relative;
+				display:none;
+			}
+			#find-btn,#replace-btn{
+				width:60px;
+				height:30px;
+				background:wheat;
+				float:left;
+				text-align:center;
+				line-height:30px;
+			}
+			
+			#top{
+				width:350px;
+				height:30px;
+				border-bottom:2px solid red;
+				padding-top:10px;
+			}
+			#off{
+				width:22px;
+				height:22px;
+				background:url(img/x.jpg);
+				position:absolute;
+				right:10px;
+				top:10px;
+			}
+			#find-text,#find-text2{
+				width:160px;
+				height:25px;
+				border:1px solid saddlebrown;
+				margin-top:15px;
+				float:left;
+				margin-right:5px;
+			}
+			#find-text2{
+				display:none;
+			}
+			#open,#open-find,#open-replace{
+				width:110px;
+				height:40px;
+				line-height:40px;
+				text-align:center;
+			}
+			#open{
+				position:absolute;
+				right:30px;
+				top:40px;
+				background:sandybrown;
+			}
+			#open-find{
+				position:absolute;
+				right:30px;
+				top:80px;
+				background:palegoldenrod;
+				border-bottom:1px solid black;
+				
+			}
+			#open-replace{
+				position:absolute;
+				right:30px;
+				top:121px;
+				background:palegoldenrod;
+				border-bottom:1px solid black;
+				
+			}
+			#wrap{
+				display:none;
+			}
+			#replace-text{
+				float:left;
+				margin-top:18px;
+				margin-left:6px;
+			}
+			a{
+				background:orange;
+				display:inline-block;
+			}
+		
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<div id="text">
+			白色的风车，安静的站着，真实的感觉，梦境般遥远，，甜甜的海水，复杂的眼泪，看您傻笑着，握住我的手，很可惜没有祝福，但爱你没有孤独，不会再让你哭，我陪你走到最后，能不能不要回头，你静静的抱住我，说你不需要承诺，你说我一个人会比较自由，我不懂你说什么，反正不会松手，甜甜的海水，复杂的眼泪，看您傻笑着，握住我的手，很可惜没有祝福，但爱你没有孤独，不会再让你哭，我陪你走到最后，能不能不要回头，你静静的抱住我，说你不需要承诺，你说我一个人会比较自由，我不懂你说什么，反正不会松手，我陪你走到永远，陪你弹奏肖邦的夜曲，乌云在我们心
+			</div>
+			<div id="find">
+				<div id="top">
+					<span id="find-btn">查找</span>
+					<span id="replace-btn">替换</span>
+				</div>
+				<div id="off"></div>
+				<input type="text" id="find-text"/> 
+				<input type="text" id="find-text2" /> 
+				<input type="button" value="查找" id="replace-text"/> 
+			</div>
+			<div id="open">展开</div>
+			<div id="wrap">
+				<div id="open-find">查找</div>
+				<div id="open-replace">替换</div>
+			</div>
+			
+		</div>
+	</body>
+	<script type="text/javascript">
+		var open = document.getElementById('open');
+		var text = document.getElementById('text');
+		var wrap = document.getElementById('wrap');
+		var div = wrap.getElementsByTagName('div');
+		var find = document.getElementById('find');
+		var findText = document.getElementById('find-text');
+		var findText2 = document.getElementById('find-text2');
+		var replaceText = document.getElementById('replace-text');
+		var span = document.getElementsByTagName('span');
+		var off = document.getElementById('off');
+		var onOff=true;
+		var num='';
+		var str=text.innerHTML;
+		
+		open.onclick=function(){
+			if(onOff){
+				wrap.style.display="block";
+				onOff=false;
+			}else{
+				wrap.style.display="";
+				onOff=true;
+			}
+			
+		}
+		for(var i=0;i<div.length;i++){
+			color(i);
+		}
+		function color(i){
+			div[i].onmouseover=function(){
+				this.style.background='red';
+			}
+			div[i].onmouseout=function(){
+				this.style.background='';
+			}
+		}
+			
+			div[0].onclick=function(){
+				for(var i=0;i<div.length;i++){
+					div[i].style.background='';
+				}
+				span[0].style.background='red';
+				wrap.style.display='';
+				change(div[0],'block',1,'','查找','');
+			}
+			div[1].onclick=function(){
+				for(var i=0;i<div.length;i++){
+					div[i].style.background='';
+				}
+				span[1].style.background='red';
+				wrap.style.display='';
+				change(div[1],'block',0,'block','替换','')
+			}
+			off.onclick=function(){
+				find.style.display="";	
+			}
+			span[0].onclick=function(){
+				
+				change(span[0],'block',1,'','查找','red')
+			}
+			span[1].onclick=function(){
+				
+				change(span[1],'block',0,'block','替换','red')
+			}
+			function change(name,b,n,k,t,color){
+				name.style.background=color;
+				find.style.display=b;
+				span[n].style.background='';
+				findText2.style.display=k;
+				replaceText.value=t;
+			}
+			
+				replaceText.onclick=function(){
+					if(replaceText.value=='查找'){			
+					if(findText.value==''){
+						alert('请输入需要查找的内容');
+					}else if(text.innerHTML.indexOf(findText.value)==-1){
+						alert('没有您要找的'+findText.value);
+					 
+					}else{
+						
+						text.innerHTML=str.split(findText.value).join('<a>'+findText.value+'</a>');
+					}
+					console.log(text.innerHTML.indexOf(findText.value));
+				}else {
+					
+				var text2=str.split(findText.value).join(findText2.value);
+					text.innerHTML=text2;
+				}
+			}
+			
+	</script>
+</html>

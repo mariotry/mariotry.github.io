@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			
+			#title{
+				width:300px;
+				height:40px;
+				font:bold 20px/40px '宋体';
+				background:green;
+				color:#fff;
+			}
+			ul{
+				margin:0px;
+				padding:0px;
+				list-style:none;
+			}
+			li{
+				height:40px;
+				border-bottom:1px solid green;
+				line-height:40px;
+				width:300px;
+			}
+			.edit{
+				width:25px;
+				height:25px;
+				background:url(img/bi.jpg);
+				border:none;
+				margin-top:3px;
+				margin-left:12px;
+			}
+			.box,p,input{
+				float:left;
+			}
+			.box{
+				width:100px;
+				
+			}
+			p{
+				margin:0px;
+				padding:0px;
+			}
+			.list div{
+				display:none;
+			}
+			.list .show{
+				display:block;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="title">分类名称</div>
+		<ul>
+			<li class="list">
+				<div class="show">
+					<p>学习时间来临</p>
+					<input type="button" class="edit">
+				</div>
+				<div>
+					<input type="text" name=""   >
+					<input type="button" value="保存" class="save">
+					<input type="button" value="取消" class="cancel">
+				</div>
+			</li>
+			<li class="list">
+				<div class="show">
+					<p>学习时间来临</p>
+					<input type="button" class="edit">
+				</div>
+				<div>
+					<input type="text" name=""   >
+					<input type="button" value="保存" class="save">
+					<input type="button" value="取消" class="cancel">
+				</div>
+			</li>
+			
+			
+		</ul>
+	</body>
+	<script>
+
+
+		var list=document.getElementsByClassName('list');
+		
+
+		for(var i=0;i<list.length;i++){
+				change(i);
+		}
+		
+
+		function change(a){
+			var div=list[a].getElementsByTagName('div');
+			var p=div[0].getElementsByTagName('p')[0];
+			var edit=div[0].getElementsByClassName('edit')[0];
+			var save=div[1].getElementsByClassName('save')[0];
+			var text=div[1].getElementsByTagName('input')[0];
+			var cancel=div[1].getElementsByClassName('cancel')[0];
+			edit.onclick=function(){
+			div[0].className=''
+			div[1].className='show';
+			}
+			save.onclick=function(){
+			if(text.value!=''){
+				p.innerHTML=text.value;
+			}
+			div[0].className='show';
+			div[1].className='';
+			}
+			cancel.onclick=function(){
+			console.log(2);
+			div[0].className='show';
+			div[1].className='';
+			}
+		}
+		
+	</script>
+</html>

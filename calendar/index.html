@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:600px;
+				height:400px;
+				margin:0px auto;
+				background:url(img/1.jpg);
+				padding-top:10px;
+
+				
+			}
+			table{
+				width:600px;
+				height:240px;
+			}
+			tbody{
+				text-align:center;
+				color:#fff;
+			}
+			#sel1,#sel2{
+				width:80px;
+				height:25px;
+				margin-bottom:10px;
+			}
+			#sel1{
+				margin:20px;
+			}
+			thead{
+				color:gold;
+				
+			}
+			tr{
+				font-weight:bold;
+				font-size:20px;
+			}
+			span{
+				
+				height:25px;
+				display:inline-block;
+				line-height:25px;
+				font:bold 26px/40px '微软雅黑';
+				color:#fff;
+				margin-right:80px;
+			}
+			.today{
+				background:orange;
+			}
+			p{
+				margin:0px;
+				height:60px;
+				font:bold 60px/80px '微软雅黑';
+				margin-bottom:20px;
+				margin-left:20px;
+			}
+			th{
+				font:bold 20px/30px '幼圆';
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<p></p>
+			<span></span>
+			<select name="" id="sel1">
+				<option value=""></option>
+			</select>
+			<select name="" id="sel2">
+				<option value=""></option>
+			</select>
+			<table>
+				<thead>
+					<th>日</th>
+					<th>一</th>
+					<th>二</th>
+					<th>三</th>
+					<th>四</th>
+					<th>五</th>
+					<th>六</th>
+				</thead>
+				<tbody></tbody>
+			</table>
+		</div>
+	</body>
+	<script>
+		var theads=document.getElementsByTagName('thead')[0];
+		var tbody=document.getElementsByTagName('tbody')[0];
+		var sel1=document.getElementById('sel1');
+		var sel2=document.getElementById('sel2');
+		var span=document.getElementsByTagName('span');
+		var str2='';
+		var str3='';
+		var tYear=new Date().getFullYear();
+		var tMonth=new Date().getMonth();
+		var tDay=new Date().getDate();
+		var p=document.getElementsByTagName('p')[0];
+		
+		
+		for(var i=1990;i<2051;i++){
+			if(i==tYear){
+				str2+='<option selected value='+i+'>'+i+'年</option>';
+			}else{
+				str2+='<option value='+i+'>'+i+'年</option>';
+			}
+			
+		}
+		sel1.innerHTML=str2;
+		for(var j=1;j<13;j++){
+			if(j==tMonth+1){
+				str3+='<option selected value='+j+'>'+j+'月</option>'
+			}else{
+				str3+='<option value='+j+'>'+j+'月</option>';
+			}
+			
+		}
+		sel2.innerHTML=str3;
+		
+	
+		draw(sel1.value,sel2.value);
+		sel1.onchange=function(){
+			draw(sel1.value,sel2.value);
+		}
+		sel2.onchange=function(){
+			draw(sel1.value,sel2.value);
+		}
+		
+		
+		
+		
+		function draw(year, month){
+			var str='';
+			tbody.innerHTML = "";
+
+			d=new Date(year,month,1);
+			one=new Date(year,month-1,1);
+		
+	//		1算出当前这个月的天数
+			days=new Date(d-1).getDate();
+	//		2算出当前这个月的1号是星期几
+			
+			weeks=one.getDay();
+	//		3算出这个一共有几行
+	//		公式:(一个月的天数+星期几)/7
+			line=(days+weeks)/7
+	//		4 1号前空几个格
+			kg=1-weeks;
+			
+			var num=kg;
+
+			for(var i=0;i<line;i++){
+				str+='<tr>'
+				for(var j=0;j<7;j++){
+					if(num>days||num<1){
+						str+='<td></td>';
+					}else{
+						if(num==tDay){
+							str+='<td class="today" onclick="highlight(this)">'+num+'</td>';
+						}else{
+							str+='<td onclick="highlight(this) ">'+num+'</td>';
+						}
+						
+					}
+					
+					num++;
+				}
+				str+='</tr>'
+			}
+
+			
+
+			tbody.innerHTML=str;
+		}
+
+		function highlight(day){
+			// return console.log(day.className);
+			today=document.getElementsByClassName('today')[0];
+			today.className='';
+			day.className='today';
+		}
+		
+
+		function chinaWeek(value){
+			return['日','一','二','三','四','五','六'][value];
+		}
+
+		function zero(value){
+			if(value<10){
+			return	'0'+value;
+			}else{
+			return	value;
+			}
+		}
+		
+		setInterval(function(){
+			var d=new Date();
+			span[0].innerHTML=''+d.getFullYear()+'年'+zero(d.getMonth()+1)+'月'+zero(d.getDate())+'日 星期'+chinaWeek(d.getDay())+' ';
+			p.innerHTML=''+zero(d.getHours())+':'+zero(d.getMinutes())+':'+zero(d.getSeconds())+'';
+			
+		},1000)
+
+
+	</script>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width:350px;
+				height:350px;
+				border:2px solid salmon;
+				position:relative;
+				cursor: move;
+				float:left;
+			}
+			#mask{
+				width:175px;
+				height:175px;
+				background:rgba(255,255,0,.5);
+				display:none;
+				position:absolute;
+				left:0px;
+				top:0px;
+			}
+			#box2{
+				width:400px;
+				height:400px;
+				float:left;
+				overflow:hidden;
+				position:relative;
+			}
+			#box2 img{
+				width:800px;
+				height:800px;
+				position:absolute;
+				left:0px;
+				top:0px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<img src="small.jpg" alt="" />
+			<div id="mask"></div>
+		</div>
+		<div id="box2">
+			<img src="big.jpg" alt="" id="img2"/>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var box = document.getElementById('box');
+		var mask = document.getElementById('mask');
+		var img = document.getElementById('img2');
+		box.onmouseover=function(){
+			mask.style.display='block';
+		}
+		box.onmouseout=function(){
+			mask.style.display='none';
+		}
+		box.onmousemove=function(e){
+			var l=e.clientX-mask.getBoundingClientRect().width/2-box.offsetLeft-2;
+			var	t=e.clientY-mask.getBoundingClientRect().height/2-box.offsetLeft-2;
+			
+			if(l<=0){
+				l=0;
+			}else if(l>=box.getBoundingClientRect().width-mask.getBoundingClientRect().width){
+				l=box.getBoundingClientRect().width-mask.getBoundingClientRect().width-2;
+			}
+			if(t<=0){
+				t=0;
+			}else if(t>=box.getBoundingClientRect().height-mask.getBoundingClientRect().height){
+				t=box.getBoundingClientRect().height-mask.getBoundingClientRect().height-2;
+			}
+			mask.style.left=l+'px';
+			mask.style.top=t+'px';
+			var bigL=l/350*800+'px';
+			var bigT=t/350*800+'px';
+			img.style.left='-'+bigL;
+			img.style.top='-'+bigT;
+		}
+	</script>
+</html>

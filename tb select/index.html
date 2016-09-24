@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1 span {
+            display: inline-block;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="div1">
+        选择：
+    </div>
+
+    <div id="div2">
+        <dl>
+            <dt>职位</dt>
+                <dd>前端</dd>
+                <dd>后端</dd>
+                <dd>设计</dd>
+        </dl>
+        <dl>
+            <dt>地区</dt>
+                <dd>北京</dd>
+                <dd>上海</dd>
+                <dd>广州</dd>
+        </dl>
+        <dl>
+            <dt>薪资</dt>
+                <dd>10000</dd>
+                <dd>12000</dd>
+                <dd>8000</dd>
+        </dl>
+    </div>
+
+    <script>
+        var div1 = document.getElementById('div1');
+        var dds = document.getElementsByTagName('dd');
+
+        for (var i=0; i<dds.length; i++) {
+
+            dds[i].onclick = function() {
+
+                if ( !this.parentNode.span ) {
+                    this.parentNode.span = document.createElement('span');
+                    div1.appendChild(this.parentNode.span);
+                }
+
+                this.parentNode.span.innerHTML = this.innerHTML;
+
+            }
+
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+.box{
+	width:500px;
+	height:180px;
+	border:1px solid red;
+	display:none;
+}
+.box2{
+	width:500px;
+	height:180px;
+	background:green;
+	display:none;
+}
+input{
+	margin-bottom:10px;
+}

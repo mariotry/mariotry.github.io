@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        #box1{
+            width:100px;
+            height:100px;
+            background:red;
+            position:absolute;
+            left:0px;
+            top:0px;
+        }
+        
+        img{
+            width:180px;
+            height:260px;
+            background-size:80px;
+            position:absolute;
+            left:550px;
+            top:300px;
+            border:1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1"></div>
+    <img src="1.jpg"/>
+   
+</body>
+    <script type="text/javascript">
+        var box1 = document.getElementById('box1');
+        var img = document.getElementsByTagName('img')[0];
+        var windowWidth= window.innerWidth;
+        var windowHeight = window.innerHeight;
+        var objWidth= box1.offsetWidth;
+        var objHeight= box1.offsetHeight;
+      
+        // 拖拽
+        // 封装
+        box1.onmousedown=function(e){
+            var dL=e.clientX-this.offsetLeft;
+            var dT=e.clientY-this.offsetTop;
+            document.onmousemove=function(e){
+                var boxLeft =box1.offsetLeft;
+                var boxTop = box1.offsetTop;
+                var L=e.clientX-dL;
+                var T=e.clientY-dT;
+               
+                if(L<100){
+                    L=0;
+                }else if(L>windowWidth-objWidth-100){
+                    L=windowWidth-objWidth;
+                }
+                if(T<100){
+                    T=0;
+                }else if(T>windowHeight-objHeight-100){
+                    T=windowHeight-objHeight;
+                }
+                box1.style.left=L+'px';
+                box1.style.top=T+'px';
+                console.log(box1.getBoundingClientRect().right,img.offsetLeft);
+                if(box1.getBoundingClientRect().right>img.offsetLeft&&boxLeft<img.getBoundingClientRect().right&&boxTop+objHeight>img.offsetTop&&boxTop<img.offsetTop+img.offsetHeight){
+                    img.src='2.jpg';
+                }else{
+                    img.src='1.jpg'
+                }
+
+             }
+            document.onmouseup=function(e){
+               document.onmousemove=null;
+            }
+            return false;
+        }
+    </script>
+</html>

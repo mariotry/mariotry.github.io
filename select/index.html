@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul,li{
+				padding:0px;
+				margin:0px;
+				list-style:none;
+			}
+			section{
+				width:300px;
+				margin:0px auto;
+			}
+			#title{
+				width:300px;
+				height:50px;
+				border:1px solid orange;
+				padding-top:10px;
+			}
+			#content{
+				width:260px;
+				border:1px solid orange;
+				padding:20px;
+				display:none;
+			}
+			#title span{
+				width:50px;
+				height:40px;
+				background:blue;
+				float:left;
+				text-align:center;
+				line-height:40px;
+				margin-left:10px;
+				color:#fff;
+				border-radius: 8px;
+			}
+			li:hover{
+				background:orange;
+				color:#fff;
+			}
+			.focus{
+				background:orange;
+				color:#fff;
+			}
+			a{
+				width:12px;
+				height:12px;
+				background:green;
+				float:left;
+			}
+		</style>
+	</head>
+	<body>
+		<section>
+			<div id="title"></div>
+			<div id="content">
+			<input type="text" />
+				<ul id="wrap">
+					<li>html</li>
+					<li>css</li>
+					<li>js</li>
+				</ul>
+			</div>
+		</section>
+	</body>
+	<script>
+		var title = document.getElementById('title');
+		var content = document.getElementById('content');
+		var input = document.getElementsByTagName('input')[0];
+		var wrap = document.getElementById('wrap');
+		var lis = wrap.getElementsByTagName('li');
+
+		title.onclick=function(e){
+			content.style.display='block';
+			e.cancelBubble=true;
+		}
+		document.onclick=function(){
+			content.style.display='none';
+		}
+		wrap.onclick=function(e){
+			if(e.ctrlKey){
+				e.cancelBubble=true;
+			}
+			if(!e.target.span){
+				console.log(e.ctrlKey);
+				e.target.className='focus';
+				// e.cancelBubble=true;
+				e.target.span = document.createElement('span');
+				e.target.span.innerHTML=e.target.innerHTML;
+				title.appendChild(e.target.span);
+				
+			}else{
+				e.target.className='';
+				title.removeChild(e.target.span);
+				e.target.span=null;
+			}
+		}
+		input.onclick=function(e){
+			e.cancelBubble=true;
+		}
+		input.oninput=function(e){
+			for(var i=0;i<lis.length;i++){
+				if(lis[i].innerHTML.indexOf(this.value)!==-1){
+					lis[i].style.display="block";
+				}else{
+					lis[i].style.display="none";
+				}
+			}
+		}
+		
+		input.onkeyup=function(e){
+			var onOff=true;
+			if(e.which==13&&this.value!==''){
+				for(var i=0;i<lis.length;i++){
+					if(lis[i].innerHTML==this.value){
+						if(!lis[i].span){
+							lis[i].className='focus';
+							lis[i].span = document.createElement('span');
+							lis[i].span.innerHTML=lis[i].innerHTML;
+							title.appendChild(lis[i].span);
+						}
+							var onOff=false;
+					}
+				}
+				if(onOff){
+					var li = document.createElement('li');
+					li.innerHTML=this.value;
+					wrap.appendChild(li);
+					li.className='focus';
+					li.span = document.createElement('span');
+					li.span.innerHTML=this.value;
+					title.appendChild(li.span);
+				}
+				
+			}
+			
+			
+		}
+	</script>
+</html>

@@ -1,0 +1,27 @@
+[0612/101936:WARNING:dns_config_service_win.cc(653)] Failed to read DnsConfig.
+[0612/101936:ERROR:proxy_service_factory.cc(105)] Cannot use V8 Proxy resolver in single process mode.
+[0612/101936:ERROR:command_buffer_proxy_impl.cc(156)] Failed to initialize command buffer service.
+[0612/101936:ERROR:webgraphicscontext3d_command_buffer_impl.cc(394)] CommandBufferProxy::Initialize failed.
+[0612/101936:ERROR:webgraphicscontext3d_command_buffer_impl.cc(413)] Failed to initialize command buffer.
+[0612/101936:ERROR:command_buffer_proxy_impl.cc(156)] Failed to initialize command buffer service.
+[0612/101936:ERROR:webgraphicscontext3d_command_buffer_impl.cc(394)] CommandBufferProxy::Initialize failed.
+[0612/101936:ERROR:webgraphicscontext3d_command_buffer_impl.cc(413)] Failed to initialize command buffer.
+[0612/101936:ERROR:command_buffer_proxy_impl.cc(156)] Failed to initialize command buffer service.
+[0612/101936:ERROR:webgraphicscontext3d_command_buffer_impl.cc(394)] CommandBufferProxy::Initialize failed.
+[0612/101936:ERROR:webgraphicscontext3d_command_buffer_impl.cc(413)] Failed to initialize command buffer.
+[0612/101936:ERROR:command_buffer_proxy_impl.cc(156)] Failed to initialize command buffer service.
+[0612/101936:ERROR:webgraphicscontext3d_command_buffer_impl.cc(394)] CommandBufferProxy::Initialize failed.
+[0612/101936:ERROR:webgraphicscontext3d_command_buffer_impl.cc(413)] Failed to initialize command buffer.
+[0612/101936:ERROR:command_buffer_proxy_impl.cc(156)] Failed to initialize command buffer service.
+[0612/101936:ERROR:webgraphicscontext3d_command_buffer_impl.cc(394)] CommandBufferProxy::Initialize failed.
+[0612/101936:ERROR:webgraphicscontext3d_command_buffer_impl.cc(413)] Failed to initialize command buffer.
+[0612/101936:ERROR:command_buffer_proxy_impl.cc(156)] Failed to initialize command buffer service.
+[0612/101936:ERROR:webgraphicscontext3d_command_buffer_impl.cc(394)] CommandBufferProxy::Initialize failed.
+[0612/101936:ERROR:webgraphicscontext3d_command_buffer_impl.cc(413)] Failed to initialize command buffer.
+[0612/101936:ERROR:command_buffer_proxy_impl.cc(156)] Failed to initialize command buffer service.
+[0612/101936:ERROR:webgraphicscontext3d_command_buffer_impl.cc(394)] CommandBufferProxy::Initialize failed.
+[0612/101936:ERROR:webgraphicscontext3d_command_buffer_impl.cc(413)] Failed to initialize command buffer.
+[0612/101936:ERROR:command_buffer_proxy_impl.cc(156)] Failed to initialize command buffer service.
+[0612/101936:ERROR:webgraphicscontext3d_command_buffer_impl.cc(394)] CommandBufferProxy::Initialize failed.
+[0612/101936:ERROR:webgraphicscontext3d_command_buffer_impl.cc(413)] Failed to initialize command buffer.
+[0612/101941:WARNING:dns_config_service_win.cc(653)] Failed to read DnsConfig.

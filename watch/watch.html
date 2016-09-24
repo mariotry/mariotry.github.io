@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='js/mTween2.js'></script>
+	<style>
+		*{
+			margin:0px;
+			padding:0px;
+		}
+		#box{
+			width:1200px;
+			height:210px;
+			margin-top:100px;
+		}
+		
+		
+		ul li{
+			list-style:none;
+			vertical-align: top;
+			width:150px;
+			height:210px;
+			float:left;
+			position:relative;
+			overflow:hidden;
+		}
+		ul li p{
+			width:150px;
+			height:420px;
+			position:absolute;
+			top:0;
+			margin:0;
+		}
+		img{
+			width:150px;
+			height:210px;
+			border:none;
+			vertical-align: top;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul id="list">
+			<li>
+				<p>
+					<img src="img/0.png" alt="" />
+					<img src="img/0.png" alt="" />
+				</p>
+			</li>
+			<li>
+				<p>
+					<img src="img/0.png" alt="" />
+					<img src="img/0.png" alt="" />
+				</p>
+			</li>
+			<li>
+				<p>
+					<img src="img/fuh.png" alt="" />
+				</p>
+			</li>
+			<li>
+				<p>
+					<img src="img/0.png" alt="" />
+					<img src="img/0.png" alt="" />
+				</p>
+			</li>
+			<li>
+				<p>
+					<img src="img/0.png" alt="" />
+					<img src="img/0.png" alt="" />
+				</p>
+			</li>
+			<li>
+				<p>
+					<img src="img/fuh.png" alt="" />
+				</p>
+			</li>
+			<li>
+				<p>
+					<img src="img/0.png" alt="" />
+					<img src="img/0.png" alt="" />
+				</p>
+			</li>
+			<li>
+				<p>
+					<img src="img/0.png" alt="" />
+					<img src="img/0.png" alt="" />
+				</p>
+			</li>
+			
+		</ul>
+	</div>
+</body>
+
+<script>
+	function change (n){
+		return n<10 ? '0'+n:n;
+	}
+//	var list=document.getElementById('list');
+	var allp=document.getElementsByTagName('p');
+	var d=new Date();
+	var h=d.getHours();
+	var m=d.getMinutes();
+	var s=d.getSeconds();
+	var str=change(h)+':'+change(m)+':'+change(s);
+	
+	for(var i=0;i<str.length;i++){
+	var	img1=allp[i].getElementsByTagName('img')[0];
+		if(str.charAt(i)!==':'){
+			img1.src='img/'+str.charAt(i)+'.png';
+		}
+	}
+	var oldTime=str;
+	setInterval(function(){
+		
+		var d=new Date();
+		var h=d.getHours();
+		var m=d.getMinutes();
+		var s=d.getSeconds();
+		var str=change(h)+':'+change(m)+':'+change(s);
+		
+		for(var i=0;i<str.length;i++){
+		var	img1=allp[i].getElementsByTagName('img')[0];
+		var	img2=allp[i].getElementsByTagName('img')[1];
+			if(str.charAt(i)!==':'){
+				img2.src='img/'+str.charAt(i)+'.png';
+				if(str.charAt(i)!==oldTime.charAt(i)){
+					(function(i){
+						mTween(allp[i],'top',-210,500,'linear',function(){
+							allp[i].style.top=0;
+							
+						var	newImg1=allp[i].getElementsByTagName('img')[0];
+						var	newImg2=allp[i].getElementsByTagName('img')[1];
+							
+							newImg1.src=newImg2.src;
+						})
+					})(i)
+				}
+			}
+		}
+		
+		oldTime=str;
+	},1000)
+</script>
+
+</html>

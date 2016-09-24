@@ -1,0 +1,111 @@
+#wrap{
+	width:312px;
+	border-bottom:2px solid black;
+}
+input{
+	margin:0px;
+}
+ul{
+	margin:0px;
+	padding:0px;
+	list-style:none;
+	width:100%;
+	height:185px;
+	border-bottom:2px solid #C4C2C2;
+}
+#bottom{
+	width:100%;
+	height:35px;
+	position:relative;
+}
+li:nth-child(odd){
+	background:#c6e1ff;
+}
+.list{
+	width:100%;
+	height:29px;
+	border:1px solid #fff;
+	
+	font-size:12px;
+}
+.check{
+	margin:8px 15px 0px 20px;
+	float:left;
+}
+li span:nth-of-type(1){
+	height:29px;
+	line-height:30px;
+	float:left;
+
+}
+li span:nth-of-type(2){
+	width:100px;
+	height:29px;
+	line-height:30px;
+	float:right;
+
+}
+#allcheck{
+	position:absolute;
+	left:20px;
+	top:10px;
+	float:left;
+}
+#text{
+	height:35px;
+	line-height:35px;
+	font-size:12px;
+	float:left;
+	position:absolute;
+	left:48px;
+	top:0px;
+}
+#btn,#btn2,#btn3{
+	width:63px;
+	height:23px;
+	border:1px solid #CECECE;
+	border-radius:5px;
+	
+}
+#btn{
+	position:absolute;
+	top:5px;
+	left:89px;
+}
+#btn2{
+	position:absolute;
+	top:5px;
+	left:164px;
+}
+#btn3{
+	position:absolute;
+	top:5px;
+	left:239px;
+}
+#btn #btn-pic,#btn2 #btn-pic,#btn3 #btn-pic{
+	width:13px;
+	height:11px;
+
+	
+	margin-left:9px;
+	margin-top:6px;
+	float:left;
+}
+#btn #btn-pic{
+		background:url(../img/shoucang.jpg);
+}
+#btn2 #btn-pic{
+		background:url(../img/tianjia.jpg);
+}
+#btn3 #btn-pic{
+		background:url(../img/cha.jpg);
+}
+#btn .btn-text,#btn2 .btn-text,#btn3 .btn-text{
+	width:25px;
+	height:23px;
+	line-height:23px;
+	font-size:12px;
+	float:left;;
+	margin-left:10px;
+	color:#CECECE;
+}

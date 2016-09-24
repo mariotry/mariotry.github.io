@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		ul{
+			margin:0px;
+			padding:0px;
+		}
+		li{
+			list-style:none;
+		}
+			#box{
+				width:648px;
+				height:400px;
+				border:1px solid darkblue;
+				margin:0px auto;
+				position:relative;
+			}
+			#leftTable {
+				width:100px;
+				height:648px;
+				position:absolute;
+				left:0px;
+				top:0px;
+			}
+			#leftTable li{
+				width:100px;
+				height:99px;
+				background-color:black;
+				border-bottom:1px solid #fff;
+				text-align:center;
+				line-height:100px;
+				color:#fff;
+			}
+			#leftTable .active{	
+				width:100px;
+				height:99px;
+				
+				border-bottom:1px solid #fff;
+				text-align:center;
+				line-height:100px;
+				color:#fff;
+				background-color:red;
+			}
+			div ul{
+				width:548px;
+				height:40px;
+				position:absolute;
+				left:0px;
+				bottom:0px;
+				
+			}
+			div li{
+				width:136px;
+				height:40px;
+				background-color:rgba(255,255,255,0.6);
+				border-right:1px solid crimson;
+				float:left;
+				text-align:center;
+				line-height:40px;
+			}
+			.div1 .active,.div3 .active{
+				width:136px;
+				height:40px;
+				border-right:1px solid crimson;
+				float:left;
+				text-align:center;
+				line-height:40px;
+				background-color:crimson;
+				color:#fff;
+			}
+			.div2 .active,.div4 .active{
+				width:273px;
+				height:40px;
+				border-right:1px solid crimson;
+				float:left;
+				text-align:center;
+				line-height:40px;
+				background-color:crimson;
+				color:#fff;
+			}
+			.div1,.div2,.div3,.div4{
+				display:none;
+				position:absolute;
+				right:0px;
+				top:0px;
+			}
+			.div2 li,.div4 li{
+				width:273px;
+				float:left;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<ul id="leftTable">
+				<li >一片晴天</li>
+				<li >两小无猜</li>
+				<li >三新二意</li>
+				<li >四全四美</li>
+				
+			</ul>	
+			
+					<div class="div1">
+						<img src="img/1.jpg" alt="" />
+						<ul>
+							<li>晴天片语</li>
+							<li>大好时光</li>
+							<li>微风四起</li>
+							<li>休闲自在</li>
+						</ul>
+					</div>
+					<div class="div2">
+						<img src="img/5.jpg" alt="" />
+						<ul>
+							<li >猜一</li>
+							<li >猜二</li>
+							
+						</ul>
+					</div>
+					<div class="div3">
+						<img src="img/7.jpg" alt="" />
+						<ul>
+							<li>三三</li>
+							<li>阿三</li>
+							<li>你好</li>
+							<li>动物</li>
+						</ul>
+					</div>
+					<div class="div4">
+						<img src="img/11.jpg" alt="" />
+						<ul>
+							<li >一美</li>
+							<li >二美</li>
+							
+						</ul>
+					</div>
+				
+		</div>
+	</body>
+	<script>
+		
+		arr=[
+			['一片晴天',['晴天片语','大好时光','微风四起','休闲自在'],['img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg']],
+			['两小无猜',['猜一','猜二'],['img/5.jpg','img/6.jpg']],
+			['三新二意',['三三','阿三','你好','动物'],['img/7.jpg','img/8.jpg','img/9.jpg','img/10.jpg']],
+			['四全四美',['一美','二美'],['img/11.jpg','img/12.jpg']]
+		];
+		var box=document.getElementById('box');
+		var list=box.getElementsByTagName('ul')[0].getElementsByTagName('li');
+		var odiv=box.getElementsByTagName('div');
+		var num=0;
+		var num2=0;
+		var timer=null;
+//		初始化
+		list[0].className='active';
+		odiv[0].style.display='block';
+		
+		for(var i=0;i<list.length;i++){
+			fn(i);
+		}
+
+		function fn(n){
+			var li=odiv[n].getElementsByTagName('li');
+			var pic=odiv[n].getElementsByTagName('img')[0];
+			li[0].className='active';
+			list[n].onclick = function(){
+				//大清洗
+				for(var i=0;i<list.length;i++){
+					list[i].className = '';
+					odiv[i].style.display = '';
+				}
+				for(var i=0;i<li.length;i++){
+					li[i].className='';
+				}
+				li[0].className='active';
+				this.className = 'active';
+				odiv[n].style.display = 'block';
+				pic.src=arr[n][2][0];
+				num=n;
+				num2=0;
+			}
+			for(var i=0;i<li.length;i++){
+				li[i].index=i;
+				li[i].onclick=function(){
+					for(var i=0;i<li.length;i++){
+						li[i].className='';
+					}
+					this.className='active';
+					pic.src=arr[n][2][this.index];
+					num2=this.index;
+				}
+				
+			}
+		}
+		timer=setInterval(change,1000);
+		
+		function change(){
+				
+				
+				for(var i=0;i<list.length;i++){
+					list[i].className='';
+					odiv[i].style.display='';
+				}
+				list[num].className='active';
+				odiv[num].style.display='block';
+					
+				var li=odiv[num].getElementsByTagName('li');
+				var pic=odiv[num].getElementsByTagName('img')[0];
+				
+				for(var i=0;i<li.length;i++){
+					li[i].className='';
+				}
+				
+				li[num2].className='active';
+				pic.src=arr[num][2][num2];
+				num2++;
+				
+				
+				if(num2==li.length){
+					num2=0;
+					num++;
+				}
+				if(num==list.length){
+					num=0;
+					
+				}
+				
+								
+//				console.log(pic.src);
+				
+		}
+		box.onmouseover=function(){
+			clearInterval(timer);
+		}
+		box.onmouseout=function(){
+			timer=setInterval(change,1000);
+		}
+	</script>
+</html>

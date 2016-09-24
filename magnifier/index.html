@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body style='padding:0px;margin:0px;'>
+    <canvas id='canvas' style='border:1px solid red'></canvas>
+    <input type="range" id='range' min='0.5' max='3' step='0.01' value='1' style='width:500px;display:block; margin:20 auto;'>
+    <canvas id='mirror' style='display:none'></canvas>
+</body>
+<script type="text/javascript">
+    var canvas = document.getElementById('canvas');
+    var range = document.getElementById('range');
+    var mirror = document.getElementById('mirror');
+    var mirrorText = mirror.getContext('2d');
+    var context = canvas.getContext('2d');
+    var image = new Image();
+    var onOff=false;
+    var scale 
+    canvas.width=800;
+    canvas.height=650;
+    
+    image.src='img/2.jpg'
+
+    image.onload=function(){
+        mirror.width=image.width;
+        mirror.height=image.height;
+        scale=mirror.width/canvas.width;
+        context.drawImage(image,0,0,canvas.width,canvas.height);
+        mirrorText.drawImage(image,0,0);
+    }
+
+    canvas.onmousedown=function(e){
+        onOff=true;
+        var point = {x:e.clientX,y:e.clientY}
+        isBig(true,point);
+    }
+    canvas.onmousemove=function(e){
+        if(onOff){
+            var point = {x:e.clientX,y:e.clientY}
+            isBig(true,point);
+        }
+        
+    }
+    canvas.onmouseup=function(){
+        onOff=false;
+        isBig(false);
+    }
+    canvas.onmouseout=function(){
+        onOff=false;
+        isBig(false);
+    }
+    function isBig(showMirror,point){
+        context.clearRect(0,0,canvas.width,canvas.height);
+        context.drawImage(image,0,0,canvas.width,canvas.height);
+        if(showMirror==true){
+            big(point);
+        }
+    }
+    function big(point){
+        var mirrorX=point.x*scale;
+        var mirrorY=point.y*scale;
+        var mr=100;
+        var mx=mirrorX-mr;
+        var my=mirrorY-mr;
+        var dx = point.x-mr;
+        var dy = point.y-mr;
+        context.lineWidth=5
+        context.strokeStyle='blue';
+        context.save();
+        context.beginPath();
+        context.arc(point.x,point.y,mr,0,Math.PI*2);
+        
+        context.stroke();
+
+        context.clip();
+        context.drawImage(mirror,mx,my,mr*2,mr*2,dx,dy,mr*2,mr*2);
+        context.restore();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // range.onmousemove=function(){
+    //     drawImageByScale(scale)
+    // }
+
+    // image.onload=function(){
+    //     //context.drawImage(image,0,0,canvas.width,canvas.height);
+    //     drawImageByScale(scale);
+        
+    // }
+    // function drawImageByScale(scale){
+    //     context.clearRect(0,0,canvas.width,canvas.height)
+    //     scale=range.value;
+    //     imageWidth=canvas.width*scale;
+    //     imageHeight=canvas.height*scale;
+    //     var x =canvas.width/2-imageWidth/2;
+    //     var y =canvas.height/2-imageHeight/2;
+    //     context.drawImage(image,x,y,imageWidth,imageHeight);
+            
+    // }
+</script>
+</html>

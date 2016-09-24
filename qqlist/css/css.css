@@ -1,0 +1,41 @@
+ul{
+	margin:0px;
+	padding:0px;
+	list-style:none;
+}
+#box{
+	width:250px;
+	border:1px solid black;
+	margin:0px auto;
+}
+h3{
+	margin:0px;
+	width:100%;
+	height:23px;
+	padding-top:7px;
+	background:chartreuse;
+	line-height:18px;
+	text-indent:1em;
+	font-size:22px;
+}
+.name{
+	width:100%;
+	height:25px;
+	background:#fff;
+	border-bottom:1px solid black; 
+	text-indent:2em;
+	line-height:25px;
+	
+}
+.name-box{
+	display:none;
+}
+.pic{
+	width:6px;
+	height:12px;
+	background:url(../img/jian.png);
+	float:left;
+	margin-left:15px;
+	margin-top:3px;
+	transform:rotate(0deg);
+}

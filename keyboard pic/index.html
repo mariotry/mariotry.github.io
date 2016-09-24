@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			ul,li{
+				padding:0px;
+				margin:0px;
+				list-style:none;
+			}
+			#box{
+				width:300px;
+				height:450px;
+				border:1px solid #DC143C;
+				margin:0px auto;
+				position:relative;
+				overflow:hidden;
+			}
+			#img1,#img2{
+				position:absolute;
+				left:0px;
+				top:0px;
+			}
+			#lis1 img{
+				z-index:5;
+			}
+			#lis2 img{
+				z-index:3;
+			}
+			
+		</style>
+		<script src="js/tween.js"></script>
+	</head>
+	<body>
+		<ul id="box">
+			<li id="lis1">
+				<img src="img/0.jpg" alt="" id="img1"/>
+			</li>
+			<li id="lis2">
+				<img src="img/1.jpg" alt="" id="img2"/>
+			</li>
+		</ul>
+		<script>
+			var n=0;
+			var box=document.getElementById('box');
+			var img1=document.getElementById('img1');
+			var img2=document.getElementById('img2');
+			var timer=null;
+			window.onkeydown=function(e){
+					if(e.which==37){
+						clearInterval(timer);
+						fn(-300,'left');
+					}
+					if(e.which==38){
+						clearInterval(timer);
+						fn(-450,'top');
+					}
+					if(e.which==39){
+						clearInterval(timer);
+						fn(300,'left');
+					}
+					if(e.which==40){
+						clearInterval(timer);
+						fn(450,'top');
+					}
+			}
+			function fn(target,attr){
+				img1.style.top=0+'px';
+				img1.style.left=0+'px';
+				img1.src='img/'+(n)%8+'.jpg';
+				img2.src='img/'+(n+1)%8+'.jpg';
+				n++;
+				//公式 :起始位置  + (匀速度 = 总距离 / 花费总时间) * 时间差(运行时间)
+				//起始位置
+				var begin = 0;
+				//	console.log(begin);
+				//总距离
+				var count =target-begin;
+				console.log(count);
+				//初始时间
+				var startTime=new Date().getTime();
+				//花费总时间
+				var duration = 1000;
+				timer=setInterval(function(){
+					time=new Date().getTime()-startTime;
+						if(time > duration){
+							//强行将当时间差(运行时间) = 花费总时间
+							time = duration;
+							clearInterval(timer);
+						}
+						value=begin+count/duration*time;
+						//console.log(value==parseFloat(getComputedStyle(box).width));
+						if(value==begin){
+							value=0;
+						}
+						img1.style[attr]=value+'px';
+						
+				},30)
+			}
+		</script>
+	</body>
+</html>

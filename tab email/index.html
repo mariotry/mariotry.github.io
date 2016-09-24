@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        #title{
+            width:200px;
+            height:30px;
+            border:1px solid red;
+            margin-bottom:20px;
+        }
+        #contentWrap{
+            width:200px;
+            height:100px;
+            border:1px solid red;
+        }
+        #btn{
+            width:50px;
+            height:20px;
+            line-height:20px;
+            font-size:14px;
+            text-align:center;
+            margin-top:20px;
+            margin-bottom:10px;
+        }
+        #content div{
+            float:left;
+        }
+        #title input{
+            margin-left:10px;
+        }
+    </style>
+</head>
+<body>
+    <div style="width:200px;">
+        <input type="text" id="title">
+        <input type="text" id="contentWrap"/>
+        <input type="button" value="添加" id="btn"/>
+    </div>
+    
+    <div id="title2">
+        <input type="button" id='btn1' value="按钮一" style="background:orange;"/>
+        <input type="button" id='btn2' value="按钮二"/>
+    </div>
+    <div id="content">
+        <div id="content1">内容一</div>
+        <div id="content2" style="display:none;">内容二</div>
+    </div>
+</body>
+<script type="text/javascript">
+   var btn = document.getElementById('title2').getElementsByTagName('input');
+   var contentParent=document.getElementById('content');
+   var content = contentParent.getElementsByTagName('div');
+   var title = document.getElementById('title');
+   var title2 = document.getElementById('title2');
+   var push = document.getElementById('btn');
+   var contentWrap = document.getElementById('contentWrap');
+   fn()
+   function fn(){
+    var btn = document.getElementById('title2').getElementsByTagName('input');
+        for(var i=0;i<btn.length;i++){
+            btn[i].index=i;
+            btn[i].onclick=function(){
+                for(var i=0;i<content.length;i++){
+                    content[i].style.display='none';
+                    btn[i].style.background='';
+                }
+                this.style.background='orange';
+                content[this.index].style.display="block"
+            }
+        }
+   }
+    
+    push.onclick=function(){
+        var input = document.createElement('input');
+        input.type='button';
+        input.value=title.value;
+        title2.appendChild(input);
+        var box = document.createElement('div');
+        box.innerHTML=contentWrap.value;
+        //console.log(div.innerHTML);
+        box.style.display='none';
+        contentParent.appendChild(box);
+        fn()
+    }
+</script>
+</html>
