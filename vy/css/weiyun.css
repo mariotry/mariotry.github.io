@@ -1,0 +1,487 @@
+/*清样式,设class*/
+.clearfix:after{
+    content:'';
+    display:block;
+    clear:both;
+}
+h1,body,input,ul,p{
+    margin:0px;
+    padding:0px;
+}
+li{
+    list-style:none;
+}
+/*头部*/
+#title{
+    width:100%;
+    height:40px;
+    background:#fff;
+    padding-top:10px;
+}
+h1{
+    width:160px;
+    height:27px;
+    padding-left:15px;
+    background:url(../img/h1.jpg) no-repeat 15px 0px;
+    float:left;
+}
+#title-right{
+    float:right;
+    margin-right:50px;
+}
+#serve{
+    width:108px;
+    height:28px;
+    background:#3091f2;
+    border:1px solid #0063c5;
+    line-height:28px;
+    text-align:center;
+    float:left;
+    color:#fff;
+    margin-right:20px;
+}
+#serve span{
+    width:24px;
+    height:15px;
+    float:left;
+    background:url(../img/8.jpg) no-repeat;
+    margin-left:5px;
+    margin-top:6px;
+
+}
+#download{
+    width:120px;
+    height:28px;
+    border:1px solid #0063c5;
+    line-height:28px;
+    text-align:center;
+    float:left;
+    colro:#0063c5;
+    margin-right:20px;
+}
+#download span{
+    width:12px;
+    height:16px;
+    background:url(../img/9.jpg);
+    float:left;
+    margin-left:5px;
+    margin-top:6px;
+}
+#title input{
+    width:160px;
+    height:28px;
+    border:1px solid #666;
+    text-indent: 25px;
+    background:url(../img/10.jpg) no-repeat  8px 8px;
+}
+
+/*顶部功能区*/
+/*各种功能按钮*/
+#operate1,#operate2,#operate3,#operate4,#operate5,#operate6,#operate7,#operate8,#operate9{
+    width:130px;
+    height:40px;
+    line-height:40px;
+    text-align:center;
+    border:1px solid #666;
+    margin-right:10px;
+    float:left;
+    
+}
+#operate0{
+    padding-left:35px;
+    float:left;
+    padding-top:14px;
+}
+#operate0 #uploading{
+    width:130px;
+    height:36px;
+    background:#3091f2;
+    text-align:center;
+    line-height:36px;
+    color:#fff;
+    font-weight:bold;
+}
+#operate1 span{
+    background:url('../img/ico-message.png') no-repeat;
+    background-position:0 -552px;
+    margin-left:20px;
+}
+#operate2 span{
+    background:url('../img/ico-message.png') no-repeat;
+    background-position:0 -520px;
+    margin-left:10px;
+   
+}
+#operate3 span{
+    background:url('../img/ico-message.png') no-repeat;
+    background-position:0 -457px;
+     margin-left:10px;
+}
+#operate4 span{
+    background:url('../img/ico-message.png') no-repeat;
+    background-position:0 -328px;
+    margin-left:15px;
+}
+#operate5 span{
+    background:url('../img/ico-message.png') no-repeat;
+    background-position:0 -359px;
+    margin-left:15px;
+}
+#operate6 span{
+    background:url('../img/ico-message.png') no-repeat;
+    background-position:0 -393px;
+    margin-left:15px;
+}
+#operate7 span{
+    background:url('../img/ico-message.png') no-repeat;
+    background-position:0 -713px;
+    margin-left:23px;
+}
+#operate8 span{
+    background:url('../img/7.jpg') no-repeat;
+    margin-left:23px;
+
+}
+#operate9 span{
+    background:url('../img/6.jpg') no-repeat;
+    margin-left:23px;
+}
+.ico{
+    width:16px;
+    height:15px;
+    float:left;
+     margin-top:13px;
+}
+#titleIco{
+    width:750px;
+    height:42;
+    float:left;
+}
+#nav-right{
+    width:1180px;
+    height:42px;
+    padding:10px;
+    background:#f5f6f9;
+    border:1px solid  #cdd1da;
+    float:left;
+}
+#nav-right2{
+    float:right;
+}
+/*功能区(左边功能区)*/
+#left{
+    width:198px;
+    height:536px;
+    background:#eaedf4;
+    border:1px solid #cdd1da;
+    float:left;
+}
+#list{
+    height:32px;
+    border-top:1px solid #c8ccd5;
+    border-bottom:1px solid #c8ccd5;
+    background:#ced4e0;
+    line-height:32px;
+    position:relative;
+}
+#list,#soon,#cut,#manage li,#type li{
+    text-align:center;
+}
+#soon{
+    height:51px;
+    border-bottom:1px solid #d8dce5;
+    background:#eaedf4;
+    line-height:51px;
+    position:relative;
+}
+#type{
+    height:204px;
+    border-bottom:1px solid #d8dce5;
+    padding-top:10px;
+}
+#type li{
+    height:38px;
+    line-height:38px;
+    position:relative;
+}
+#logo1,#logo2,#logo3,#logo4,#logo5,#list-logo,#soon-logo,#cut-logo,#manage-logo1,#manage-logo2{
+    width:16px;
+    height:16px;
+    background:url(../img/ico-message.png) no-repeat;
+    float:left;
+    position:absolute;
+    left:50px;
+    top:10px;
+}
+#cut-logo{
+    background-position:0px -263px;
+}
+#manage-logo1{
+    background-position:0px -296px;
+}
+#manage-logo2{
+    background-position:0px -328px;
+}
+#list-logo{
+     background-position:0px -8px;
+}
+#soon-logo{
+     background-position:0px -39px;
+}
+#logo1{
+    background-position:0px -104px;
+}
+#logo2{
+    background-position:0px -72px;
+}
+
+#logo3{
+    background-position:0px -201px;
+}
+#logo4{
+    background-position:0px -168px;
+}
+#logo5{
+    background-position:0px -136px;
+}
+#cut{
+    height:58px;
+    border-bottom:1px solid #d8dce5;
+    line-height:58px;
+}
+#manage{
+    height:77px;
+    padding-top:10px;
+    margin-bottom:41px;
+}
+#manage li{
+    height:38px;
+    line-height:38px;
+}
+#foot{
+    height:22px;
+    line-height:22px;
+}
+/*右边地址栏*/
+#right{
+    float:right;
+}
+#step{
+    width:190px;
+    height:538px;
+    border-right:1px solid #e6e9f0;
+    float:left;
+    padding-left:15px;
+    padding-right:15px;
+}
+.step-content{
+    width:100%;
+    margin-bottom:10px;
+}
+.pad{
+    padding-left:20px;
+}
+.no-ico{
+    background:rgba(0,0,0,1);
+}
+.ico-block{
+    width:10px;
+    height:10px;
+    margin-top:12px;
+    float:left;
+    margin-right:2px;
+    background:url(../img/3.png) no-repeat;
+}
+.step-ico1{
+    width:10px;
+    height:10px;
+    margin-top:12px;
+    float:left;
+    background:url(../img/1.png) no-repeat;
+}
+.step-ico2{
+    width:18px;
+    height:18px;
+    margin-top:10px;
+    margin-right:8px;
+    float:left;
+    background:url(../img/2.png) no-repeat;
+}
+.step-text{
+    height:40px;
+    line-height:40px;
+    
+}
+.hover{
+    background:#f3f7ff;
+}
+#content-pack{
+    float:left;
+}
+#add{
+    width:100%;
+    height:30px;
+    border-bottom:1px solid #e6e9f0;
+}
+#add #checkbox{
+    margin:10px 10px 0px 10px;
+    float:left;
+}
+#ico2{
+    width:50px;
+    height:30px;
+    background:url(../img/12.jpg);
+    float:left;
+}
+#add #addText{
+    width:700px;
+    float:left;
+    height:30px;
+    line-height:30px;
+}
+#foot{
+    padding-left:25px;
+}
+#copyright,#complaint{
+    width:75px;
+    height:22px;
+    float:left;
+}
+#foot span{
+    float:left;
+    margin-right:5px;
+}
+/*右边内容部分*/
+#content{
+    width:100%;
+    height:505px;
+
+}
+.folder{
+    width:125px;
+    height:127px;
+    float:left;
+    margin-left:30px;
+    margin-top:30px;
+    position:relative;
+}
+.folder-pic{
+    width:100%;
+    height:100px;
+    background:url(../img/1.jpg) no-repeat 30px 35px    ;
+
+}
+ .text{
+    width:100%;
+    height:25px;
+    border:none;
+    background:none;
+    text-align:center;
+    line-height:25px;
+}
+.checkbox{
+    width:18px;
+    height:18px;
+    float:left;
+    position:absolute;
+    left:0px;
+    top:0px;
+    /*display:none;*/
+    z-index:2;
+}
+.folder-hover{
+    width:125px;
+    height:127px;
+    float:left;
+    margin-left:30px;
+    margin-top:30px;
+    position:relative;
+    background:#f3f7ff;
+    border:1px solid #eaedf4;
+    cursor:pointer;
+}
+.folder-hover-checkbox{
+    width:18px;
+    height:18px;
+    float:left;
+    position:absolute;
+    left:0px;
+    top:0px;
+    z-index:2;
+    display:block;
+    background:url(../img/4.jpg);
+}
+.folder-checked{
+    width:125px;
+    height:127px;
+    float:left;
+    margin-left:30px;
+    margin-top:30px;
+    position:relative;
+    background:#d8e0f0;
+    border:1px solid #eaedf4;
+}
+.folder-checked-checkbox{
+     width:18px;
+    height:18px;
+    float:left;
+    position:absolute;
+    left:0px;
+    top:0px;
+    z-index:2;
+    display:block;
+    background:url(../img/5.jpg);
+}
+
+#window{
+    width:420px;
+    height:160px;
+    padding:30px;
+    background:rgba(199,199,199,.9);
+    border:1px solid #a0a0a0;
+    position:absolute;
+    left:0px;
+    top:0px;
+    display:none;
+}
+#name{
+    width:400px;
+    height:30px;
+    margin-top:40px;    
+    margin-bottom:20px;
+}
+#yes,#no{
+    width:60px;
+    height:30px;
+    font-size:14px;
+    margin-top:10px;
+}
+#yes{
+    margin-left:260px;
+    margin-right:15px;  
+}
+#cancel{
+    width:60px;
+    height:30px;
+    background:red;
+    float:left;
+    text-align:center;
+    line-height:30px;
+    position:absolute;
+    right:20px;
+    top:20px;
+    font-size:24px;
+    color:#fff;
+}
+a{
+    text-decoration: none;
+    color:#666;
+}
+/*框选*/
+#frame{
+    width:0px;
+    height:0px;
+    border:1px dotted black;
+    display:none;
+    position:absolute;
+}
