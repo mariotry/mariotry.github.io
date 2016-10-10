@@ -54,6 +54,9 @@ window.onload=function(){
     // 刚开始展示页效果
     // 图标放大
     setTimeout(function(){
+        startShow.style.display='block';
+    },30)
+    setTimeout(function(){
         bag.style.transform='scale(2)';
         wrap.style.display='block';
     },60)
@@ -584,7 +587,7 @@ window.onload=function(){
             list.style.top=scrollSpan.offsetTop/(scroll.offsetHeight-scrollSpan.offsetHeight)*(scroll.clientHeight-list.offsetHeight)+'px';
             return false;
         }
-        
+
     },500)
     
 

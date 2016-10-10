@@ -25,6 +25,7 @@ body{
     background:#222222;
     position:relative;
     text-align:center;
+    display:none;
 }
 #par,#bag,#logo,#bg{
     position:absolute;
