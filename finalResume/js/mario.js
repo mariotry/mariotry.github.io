@@ -55,6 +55,7 @@ window.onload=function(){
     // 图标放大
     setTimeout(function(){
         bag.style.transform='scale(2)';
+        wrap.style.display='block';
     },60)
     //logo图片显示
     setTimeout(function(){
@@ -518,71 +519,74 @@ window.onload=function(){
     var scroll = document.getElementById('scroll');
     var scrollSpan = scroll.getElementsByTagName('span')[0];
     var myProject = document.getElementById('my-project');
-
-    var HH=scroll.offsetHeight/(list.offsetHeight/myProject.offsetHeight);
-    console.log(HH);
-    if(myProject.offsetHeight/list.offsetHeight>1){
-        HH=0;
-    }else if(myProject.offsetHeight/list.offsetHeight<0.1){
-        HH=20;
-    }
-    if(myProject.offsetHeight/list.offsetHeight<1){
-         scroll.onmousewheel=list.onmousewheel=goScroll;
-    }
-    scrollSpan.style.height=HH+'px';
-    scrollSpan.onmousedown=function(e){
-        var boxHeight = scroll.offsetHeight;
-        var box2Height = scrollSpan.offsetHeight;
-        var pHeight = list.offsetHeight;
-        var beginM = e.clientY-scrollSpan.offsetTop;
-        document.onmousemove=function(e){
-            var box2Top = scrollSpan.offsetTop;
-            var T = e.clientY-beginM;
+    setTimeout(function(){
+        var HH=scroll.offsetHeight/(list.offsetHeight/myProject.offsetHeight);
+        console.log(scroll.offsetHeight,list.offsetHeight,myProject.offsetHeight);
+        if(myProject.offsetHeight/list.offsetHeight>1){
+            HH=0;
+        }else if(myProject.offsetHeight/list.offsetHeight<0.1){
+            HH=20;
+        }
+        if(myProject.offsetHeight/list.offsetHeight<1){
+             scroll.onmousewheel=list.onmousewheel=goScroll;
+        }
+        scrollSpan.style.height=HH+'px';
+        scrollSpan.onmousedown=function(e){
+            var boxHeight = scroll.offsetHeight;
+            var box2Height = scrollSpan.offsetHeight;
+            var pHeight = list.offsetHeight;
+            var beginM = e.clientY-scrollSpan.offsetTop;
+            document.onmousemove=function(e){
+                var box2Top = scrollSpan.offsetTop;
+                var T = e.clientY-beginM;
+                if(T<0){
+                    T=0;
+                }else if(T>boxHeight-box2Height){
+                    T=boxHeight-box2Height;
+                }
+                scrollSpan.style.top=T+'px';
+                list.style.top=box2Top/(boxHeight-box2Height)*(scroll.clientHeight-list.offsetHeight)+'px';
+            }
+            document.onmouseup=function(){
+                 document.onmousemove=null;
+            }
+            return false;
+        }
+       
+        function goScroll(e){
+            var onOff=true;
+            if(e.wheelDelta){
+                if(e.wheelDelta>0){
+                    onOff=true;
+                }else{
+                    onOff=false;
+                }
+            }
+            if(e.detail){
+                if(e.detail>0){
+                    onOff=false;
+                }else{
+                    onOff=true;
+                }
+            }
+            var T;
+            if(onOff){
+                T=scrollSpan.offsetTop-10;
+            }else{
+                T=scrollSpan.offsetTop+10;
+            }
             if(T<0){
                 T=0;
-            }else if(T>boxHeight-box2Height){
-                T=boxHeight-box2Height;
+            }else if(T>scroll.offsetHeight-scrollSpan.offsetHeight){
+                T=scroll.offsetHeight-scrollSpan.offsetHeight;
             }
             scrollSpan.style.top=T+'px';
-            list.style.top=box2Top/(boxHeight-box2Height)*(scroll.clientHeight-list.offsetHeight)+'px';
+            list.style.top=scrollSpan.offsetTop/(scroll.offsetHeight-scrollSpan.offsetHeight)*(scroll.clientHeight-list.offsetHeight)+'px';
+            return false;
         }
-        document.onmouseup=function(){
-             document.onmousemove=null;
-        }
-        return false;
-    }
-   
-    function goScroll(e){
-        var onOff=true;
-        if(e.wheelDelta){
-            if(e.wheelDelta>0){
-                onOff=true;
-            }else{
-                onOff=false;
-            }
-        }
-        if(e.detail){
-            if(e.detail>0){
-                onOff=false;
-            }else{
-                onOff=true;
-            }
-        }
-        var T;
-        if(onOff){
-            T=scrollSpan.offsetTop-10;
-        }else{
-            T=scrollSpan.offsetTop+10;
-        }
-        if(T<0){
-            T=0;
-        }else if(T>scroll.offsetHeight-scrollSpan.offsetHeight){
-            T=scroll.offsetHeight-scrollSpan.offsetHeight;
-        }
-        scrollSpan.style.top=T+'px';
-        list.style.top=scrollSpan.offsetTop/(scroll.offsetHeight-scrollSpan.offsetHeight)*(scroll.clientHeight-list.offsetHeight)+'px';
-        return false;
-    }
+        
+    },500)
+    
 
 
     // li里面的背景图
