@@ -89,5 +89,5 @@ var href=[
 			'https://mariotry.github.io/gm2/',
 			'https://mariotry.github.io/gm3/',
 			'https://mariotry.github.io/vy/',
-			'https://mariotry.github.io/person/'
+			'https://mariotry.github.io/finalResume/'
 ]

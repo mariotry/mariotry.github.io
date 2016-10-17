@@ -17,9 +17,6 @@ window.onload=function(){
     var loadSpans = load.getElementsByTagName('span');
     var nav = document.getElementById('nav');
     var line = nav.getElementsByClassName('line');
-    // var navShow = document.getElementById('nav-show');
-    // var navAll = document.getElementById('navAll');
-    // var navAllLis = navAll.getElementsByTagName('li');
     var where1 = document.getElementById('where1');
     var where2 = document.getElementById('where2');
     var textLine = document.getElementsByClassName('text-line');
@@ -34,7 +31,7 @@ window.onload=function(){
     var onOff=false;
     var num=0;
     var n=0;
-
+    console.log(window.innerHeight,window.innerWidth);
     // 元素宽高自适应；
     changeSize();
     window.onresize=function(){
@@ -46,6 +43,7 @@ window.onload=function(){
         box.style.width=documentWidth+'px';
         box.style.height=documentHeight*2+'px';
         wrap.style.height=startShow.style.height=documentHeight+'px';
+        wrap.style.transformOrigin='center center '+(-window.innerWidth)/2+'px';
     }
     box.style.top=-documentHeight+'px';
 
@@ -142,8 +140,7 @@ window.onload=function(){
                     }
                     p4[t].style.display='block';
                     t++;
-                    var pL=textLine[3].children[p4.length-1].offsetLeft;
-                    var pT=textLine[3].children[p4.length-1].offsetTop;
+                    
                 }else{
                     p1[num].style.display='block';
                     num++;
@@ -186,11 +183,24 @@ window.onload=function(){
                  }
              
             }
+            
             var arr=[];
+            var pL=0;
+            var pT=0;
+            timerGet=setInterval(function(){
+                pL=textLine[3].children[p4.length-1].offsetLeft;
+                pT=textLine[3].children[p4.length-1].offsetTop;
+                if(pL!=0){
+                    clearInterval(timerGet);
+                }
+               console.log(pL,pT)
+            },500)
+            
+             // console.log(pL,pT)
             for(var i=0;i<100;i++){
                  var data={
-                     x:610+Math.random()*50+30,
-                     y:205+Math.random()*30,
+                     x:window.innerWidth/2+Math.random()*50+30,
+                     y:window.innerHeight/2-150+Math.random()*30,
                      r:Math.random()+1,
                      g:Math.random()+0.3,
                      vx:Math.pow(1,Math.ceil(Math.random()*1000))*4,
