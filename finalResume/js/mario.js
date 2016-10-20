@@ -365,27 +365,27 @@ window.onload=function(){
     hand.onclick=function(){
         shake(dot,'left',15);
         if(liStatus){
-            mtween(area[0],'height',250*liHeight[0],300,'linear');
-            mtween(area[1],'height',250*liHeight[1],300,'linear');
-            mtween(area[2],'height',250*liHeight[2],300,'linear');
-            mtween(area[3],'height',250*liHeight[3],300,'linear');
-            mtween(area[4],'height',250*liHeight[4],300,'linear');
-            mtween(area[5],'height',250*liHeight[5],300,'linear');
-            mtween(area[6],'height',250*liHeight[6],300,'linear');
-            mtween(area[7],'height',250*liHeight[7],300,'linear',function(){
+            mtween(area[0],'height',210*liHeight[0],300,'linear');
+            mtween(area[1],'height',210*liHeight[1],300,'linear');
+            mtween(area[2],'height',210*liHeight[2],300,'linear');
+            mtween(area[3],'height',210*liHeight[3],300,'linear');
+            mtween(area[4],'height',210*liHeight[4],300,'linear');
+            mtween(area[5],'height',210*liHeight[5],300,'linear');
+            mtween(area[6],'height',210*liHeight[6],300,'linear');
+            mtween(area[7],'height',210*liHeight[7],300,'linear',function(){
                 $('.area-text').fadeIn('slow');
             });
             setTimeout(function(){
                 for(var i=0;i<littleM.length;i++){
                     mtween(littleM[i],'marginTop',-150,100,'linear',function(){
-                        mtween(littleM[0],'marginTop',250*liHeight[0]-40,300,'linear');
-                        mtween(littleM[1],'marginTop',250*liHeight[1]-40,300,'linear');
-                        mtween(littleM[2],'marginTop',250*liHeight[2]-40,300,'linear');
-                        mtween(littleM[3],'marginTop',250*liHeight[3]-40,300,'linear');
-                        mtween(littleM[4],'marginTop',250*liHeight[4]-40,300,'linear');
-                        mtween(littleM[5],'marginTop',250*liHeight[5]-40,300,'linear');
-                        mtween(littleM[6],'marginTop',250*liHeight[6]-40,300,'linear');
-                        mtween(littleM[7],'marginTop',250*liHeight[7]-40,300,'linear');
+                        mtween(littleM[0],'marginTop',210*liHeight[0]-40,300,'linear');
+                        mtween(littleM[1],'marginTop',210*liHeight[1]-40,300,'linear');
+                        mtween(littleM[2],'marginTop',210*liHeight[2]-40,300,'linear');
+                        mtween(littleM[3],'marginTop',210*liHeight[3]-40,300,'linear');
+                        mtween(littleM[4],'marginTop',210*liHeight[4]-40,300,'linear');
+                        mtween(littleM[5],'marginTop',210*liHeight[5]-40,300,'linear');
+                        mtween(littleM[6],'marginTop',210*liHeight[6]-40,300,'linear');
+                        mtween(littleM[7],'marginTop',210*liHeight[7]-40,300,'linear');
                     });
                 }
             },100)
