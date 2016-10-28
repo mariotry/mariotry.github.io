@@ -1,0 +1,291 @@
+body{
+	margin:0;
+	font-family: '微软雅黑';
+
+}
+ul,h1,h3,p{
+	margin:0;
+	padding:0;
+}
+li{
+	list-style:none;
+}
+a{
+	text-decoration:none; 
+	color:#71b1fe;
+}
+#head{
+	width:100%;
+	height:137px;
+}
+#bg{
+	width:100%;
+	height:35px;
+	background:url(img/header.png) repeat-x;
+	margin-bottom:18px;
+}
+#nav{
+	width:100%;
+	height:74px;
+}
+h1{
+	width:225px;
+	height:64px;
+	background:url(img/h1.png) no-repeat;
+	margin-left:80px;
+	margin-right:197px;
+	float:left;
+}
+#title{
+	width:480px;
+	height:100%;
+	float:left;
+}
+.list{
+	height:100%;
+	font-size:20px;
+	font-family:'微软雅黑';
+	line-height:74px;
+	margin-right:48px;
+	float:left;
+}
+.list a:hover{
+	color:red;
+}
+#top{
+	width:100%;
+	height:386px;
+    perspective:617px;
+    background:black;
+    overflow: hidden;
+}
+
+#wrap{
+    width:100%;
+    height:100%;
+    transform-style: preserve-3d;
+    transition:2s;
+    position:relative;
+    text-align:center;
+}
+.wall{
+    width:100%;
+    height:100%;
+    position:absolute;
+}
+.wall:nth-of-type(1){
+    left:0;
+    top:0;
+    z-index: 5;
+    background:url(img/11.png) no-repeat;
+    background-size:100% 100%;
+}
+.wall:nth-of-type(2){
+    left:100%;
+    top:0;
+    transform-origin: left;
+    transform:rotateY(90deg);
+    background:url(img/22.png) no-repeat;
+    background-size:100% 100%;
+}
+.wall:nth-of-type(3){
+    left:0;
+    top:0;
+    background:url(img/33.png) no-repeat;
+    background-size:100% 100%;
+}
+.wall:nth-of-type(4){
+    left:-100%;
+    top:0;
+    transform-origin:right;
+    transform:rotateY(-90deg);
+    background:url(img/4.jpg) no-repeat;
+    background-size:100% 100%;
+}
+
+#left{
+	width:70px;
+	height:70px;
+	background:rgba(0,0,0,.2);
+	position:absolute;
+	left:15px;
+	top:155px;
+	border-radius: 8px;
+	
+}
+#left .ico{
+	width:100%;
+	height:100%;
+	display:inline-block;
+	background:url(img/left.png) center center no-repeat;
+}
+#right{
+	width:70px;
+	height:70px;
+	background:rgba(0,0,0,.2);
+	position:absolute;
+	right:15px;
+	top:155px;
+	border-radius: 8px;
+}
+#right .ico{
+	width:100%;
+	height:100%;
+	display:inline-block;
+	background:url(img/right.png) center center no-repeat;
+}
+#center{
+	width:100%;
+	height:329px;
+	padding-top:82px;
+	position:relative;
+}
+#san{
+	width:333px;
+	height:266px;
+	background:url(img/san.png) no-repeat;
+	margin-left:172px;
+	margin-right:68px;
+	float:left;
+}
+#fj{
+	width:216px;
+	height:233px;
+	position:absolute;
+	left:18px;
+	top:0;
+	float:left;
+	background:url(img/fj.png) no-repeat;
+}
+#text{
+	width:640px;
+	height:266px;
+	float:left;
+}
+.num{
+	width:67px;
+	height:79px;
+	float:left;
+	margin-right:30px;
+}
+
+.alot{
+	width:530px;
+	height:79px;
+	float:left;
+}
+h3{
+	font-size:16px;
+	font-weight:bold;
+	margin-bottom:6px;
+}
+#text p{
+	font-size:12px;
+	height:20px;
+	line-height:20px;
+}
+#text li{
+	margin-bottom:15px;
+}
+.clearfix:after{
+	content:"";
+	display:block;
+	clear:both;
+}
+#bottom{
+	width:100%;
+	height:592px;
+	padding-top:136px;
+	background:url(img/binner.jpg) no-repeat;
+	background-size:100% 100%;
+}
+h2{
+	width:100%;
+	height:32px;
+	line-height:32px;
+	text-align:center;
+	color:#fff;
+	font-size:32px;
+	margin-bottom:85px;
+}
+#work{
+	width:100%;
+	height:420px;
+}
+#work li{
+	width:275px;
+	height:420px;
+	float:left;
+	margin-left:14px;
+	margin-right:14px;
+	background:url(img/white.png) no-repeat;
+	position:relative;
+}
+.logo{
+	width:124px;
+	height:117px;
+	position:absolute;
+	left:77px;
+	top:49px;
+
+}
+.workTxt{
+	width:100%;
+	position:absolute;
+	top:194px;
+}
+.workTxt p{
+	width:100%;
+	height:28px;
+	line-height:28px;
+	font-size:14px;
+	text-align:center;
+}
+footer{
+	width:100%;
+	height:334px;
+	background:#373d4b;
+}
+#line1{
+	width:1164px;
+	padding-top:42px;
+	height:53px;
+	border-bottom:1px solid #49505e;
+	margin-left:60px;
+}
+#foot-text{
+	width:100%;
+	height:18px;
+	line-height:18px;
+	color:#717a8d;
+	text-align:center;
+}
+.mar{
+	margin-left:20px;
+	margin-right:20px;
+}
+#line2{
+	width:1164px;
+	padding-top:30px;
+	height:108px;
+	border-bottom:1px solid #49505e;
+	margin-left:35px;
+}
+#line2 p{
+	padding-left:426px;
+	height:20px;
+	line-height:20px;
+	font-size:16px;
+	color:#717a8d;
+}
+#line3{
+	height:74px;
+	padding-top:23px;
+}
+#line3 p{
+	text-align:center;
+	color:#717a8d;
+}
+.hov:hover{
+	color:#fff;
+}
