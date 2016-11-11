@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title></title>
+	<script src="react.js"></script>
+	<script src="react-dom.js"></script>
+	<script src='browser.min.js'></script>
+</head>
+<body>
+	<div id='box'></div>
+	<div id='box2'></div>
+	<script type="text/babel">
+		// var Item = React.createClass({
+		// 	render:function(){
+		// 		return <li >{this.props.item}</li>
+		// 	}
+		// })
+		// var List = React.createClass({
+		// 	render:function(){
+		// 		return <ul>
+		// 			{
+		// 				this.props.lists.map(function(item,index){
+		// 					return <Item key={index} item={item}/>
+		// 				})
+		// 			}
+		// 			</ul>
+					
+				
+		// 	}
+		// })
+		// var Hello = React.createClass({
+		// 	propTypes:{
+		// 		title:React.PropTypes.string.isRequired,
+		// 		customProp:function(props,propName,componentName){
+		// 			if(props.title.indexOf('hello')===-1){
+		// 				return new Error ('标题须包含hello')
+		// 			}
+		// 		}
+		// 	},
+		// 	getDefaultProps:function(){
+				
+		// 			return {
+		// 				list:['今日头条']
+		// 			}
+				
+		// 	},
+		// 	render:function(){
+		// 		return <div>
+		// 					<h2 >{this.props.title}</h2>
+		// 					<List lists={this.props.list}/>
+		// 				</div>
+
+		// 	}
+		// });
+		// var data1={
+		// 	title:'ab',
+		// 	list:[7,6,5,4,3]
+		// }
+		// var data2={
+		// 	title:'hello',
+			
+		// }
+		// ReactDOM.render(
+		// 	<Hello {...data2}> </Hello>,
+		// 	document.getElementById('box'),
+		// 	function(){
+		// 		console.log('完毕1');
+		// 	}
+		// )
+		var Form = React.createClass({
+			getInitialState:function(){
+				return {
+					val:'你好'
+				}
+			},
+			render:function(){
+				return 	<div>					<input 
+					type='text' 
+					value={this.state.val} 
+					onChange={this.changeHandle}
+					/>
+					<p>{this.state.val}</p>
+				</div>
+			},
+			changeHandle:function(e){
+				var val=e.target.value;
+				this.setState({val:val});
+			}
+		});
+		ReactDOM.render(
+			<Form />,
+			document.getElementById('box')
+		)
+	</script>
+</body>
+</html>
