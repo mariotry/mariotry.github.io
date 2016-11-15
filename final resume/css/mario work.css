@@ -2,7 +2,8 @@
 body{
     padding:0px;
     margin:0px;
-    overflow: hidden;
+    background:#504f4f;
+    overflow:hidden;
 }
 h2,ul,p{
     padding:0px;
@@ -15,9 +16,6 @@ li{
     content:"";
     display:block;
     clear:both;
-}
-body{
-    background:#504f4f;
 }
 /*第一页展示页*/
 #start-show{
@@ -418,7 +416,14 @@ body{
     top:30px;
     opacity: 0;
 }
-
+@keyframes move{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
 #sunshine-pic{
     width:100px;
     height:100px;
@@ -426,6 +431,7 @@ body{
     position:absolute;
     left:-100px;
     top:0;
+    transition:4s;
 }
 #mount{
     width:500px;
@@ -434,7 +440,6 @@ body{
     position:absolute;
     bottom:0;
     right:0;
-
 }
 #building{
     width:300px;
@@ -513,9 +518,9 @@ body{
     height:360px;
 }
 #say-pic li{
-    width:75px;
-    margin-right:10px;
-    margin-left:10px;
+    width:70px;
+    margin-right:6px;
+    margin-left:6px;
     float:left;
 
 }
@@ -580,7 +585,7 @@ body{
 #pull{
     width:4px;
     height:50px;
-    background:#fffbc9;
+    background:#00ad2c;
     margin-left:23px;
 
 }
@@ -709,11 +714,11 @@ body{
     top:10px;
 }
 #mariodd div{
-width: 13px;
-height: 20px;
-position: absolute;
-left: 0;
-top: 0;
+    width: 13px;
+    height: 20px;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 #bg-color{
     width:320px;

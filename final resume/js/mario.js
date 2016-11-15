@@ -99,7 +99,7 @@ window.onload=function(){
     var p2 = textLine[1].getElementsByTagName('p');
     var p3 = textLine[2].getElementsByTagName('p');
     var p4 = textLine[3].getElementsByTagName('p');
-    var array=['你好，我是马晓丽！一个敢挑战敢创新的姑娘','1993年4月29日的这一天我喜气洋洋的诞生在一个优美的小村庄','随着年龄的增长，开始了自己的网络之旅，热衷于各种各样的图形色彩样式设计','毕业期间酷爱网站设计，于是走上了一条幸福的不归路_']
+    var array=['离乡路走的再长、再久，终究忘不掉那片青瓦房…','1993年4月29日的这一天我喜气洋洋的诞生在一个优美的小村庄','随着年龄的增长，开始了自己的网络之旅，热衷于各种各样的图形色彩样式设计','毕业期间酷爱网站设计，于是走上了一条幸福的不归路_']
    
     function fn(who){
         var str='';
@@ -221,6 +221,10 @@ window.onload=function(){
             setTimeout(function(){
                 mtween(sha,'width',690,2000,'linear');
             },3000)
+            
+            
+
+            
             // 沙画女孩效果
             setTimeout(function(){
                 mtween(girl,'opacity',1,500,'linear',function(){
@@ -330,14 +334,19 @@ window.onload=function(){
     nav.onclick=function(){
         console.log(isClick);
         if(isClick){
+            mtween(menu,'right',220,600,'bounceIn');
+            setTimeout(function(){
+                mtween(menu,'right',110,200,'backOut');
+            },650)
             line[0].style.transform='translate(0,20px) rotate(180deg)';
             line[2].style.transform='translate(0,18px) rotate(180deg)';
             setTimeout(function(){
                 line[0].style.transform='translate(0,20px) rotate(405deg)';
                 line[2].style.transform='translate(0,18px) rotate(-405deg)';
                 line[1].style.display='none';
-                mtween(menu,'right',110,900,'linear');
+
             },200)
+
             isClick=false;
         }else{
             line[0].style.transform='  rotate(180deg)';
@@ -396,7 +405,8 @@ window.onload=function(){
                 sayLis[i].index=i;
                 sayLis[i].onmouseover=function(){
                     explain[this.index].style.display='block';
-                    this.style.cssText='width:85px;marginLeft:0;'
+                    // this.style.cssText='marginLeft:0;'
+                    mtween(sayLis[this.index],'width',85,100,'linear');
                 }
                 sayLis[i].onmouseout=function(){
                     explain[this.index].style.display='none';

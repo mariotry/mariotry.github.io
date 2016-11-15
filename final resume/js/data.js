@@ -53,7 +53,9 @@ var spanText=[
 			'国美list页',
 			'国美list页',
 			'微云',
-			'个人网站'
+			'个人网站',
+			'国美手机端',
+			'js模拟h5视频播放器'
 ]
 var href=[
 			'https://mariotry.github.io/EraseBlock/',
@@ -89,5 +91,7 @@ var href=[
 			'https://mariotry.github.io/gm2/',
 			'https://mariotry.github.io/gm3/',
 			'https://mariotry.github.io/vy/',
-			'https://mariotry.github.io/finalResume/'
+			'https://mariotry.github.io/finalResume/',
+			'https://mariotry.github.io/gmmobile/',
+			'https://mariotry.github.io/h5 video/'
 ]
