@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		video{
+			width:600px;
+			height:300px;	
+		} 
+
+	</style>
+	<script type="text/javascript">
+		window.onload=function(){
+			var v = document.getElementsByTagName('video')[0];
+			var playBtn = document.getElementsByClassName('p')[0];
+			var time= document.getElementsByClassName('time')[0];
+			var playTime = document.getElementsByClassName('playTime')[0];
+			var progress = document.getElementById('progress');
+			var mute = document.getElementById('mute');
+			var speed = document.getElementById('speed');
+			var add = document.getElementsByClassName('add');
+			var big = document.getElementById('big');
+			var minp;
+			var secp;
+			var timer=1;
+			playBtn.onclick=function(){
+				
+				if(v.paused){
+					v.play();
+					this.value='暂停';
+					playGo();
+				}else{
+					v.pause();
+					this.value='播放';
+					clearInterval(timer);
+				}
+			}
+
+			function getTime(num){
+				return num>=10 ? ''+num:'0'+num;
+			}
+			document.ontouchstart=function(){
+				v.play();
+			}
+			var min = getTime(parseInt((v.duration/60)));
+			var sec = getTime(Math.ceil(v.duration%60));
+
+			time.innerHTML=min+':'+sec;
+
+			progress.oninput=function(){
+				clearInterval(timer);
+				var n = this.value/100*v.duration;
+
+				minp = getTime(parseInt((n/60)));
+				secp = getTime(Math.ceil(n%60));
+				playTime.innerHTML=minp+':'+secp;
+				v.currentTime=n;
+			}
+			function playGo(){
+				timer = setInterval(function(){
+					
+					minp = getTime(parseInt((v.currentTime/60)));
+					secp = getTime(Math.ceil(v.currentTime%60));
+					playTime.innerHTML=minp+':'+secp;
+					if(v.currentTime==v.duration){
+						console.log('完');
+						clearInterval(timer);
+						playBtn.value='播放';
+						v.currentTime=0;
+						playTime.innerHTML='00:00';
+					}
+					progress.value=v.currentTime/v.duration*100;
+				},30)
+			}
+			progress.onmouseup=function(){
+				playGo();
+			}
+
+			mute.onclick=function(){
+				v.muted?v.muted=false:v.muted=true;
+
+				console.log(v.muted);
+			}
+
+			speed.oninput=function(){
+				v.volume=this.value/20;
+			}
+			add[0].onclick=function(){
+				v.playbackRate-=0.1;
+				if(v.playbackRate<0.5){
+					v.playbackRate=0.5;
+				}
+			}
+			add[1].onclick=function(){
+				v.playbackRate+=0.1;
+				if(v.playbackRate>2){
+					v.playbackRate=2;
+				}
+			}
+			big.onclick=function(){
+				v.webkitEnterFullscreen();
+			}
+		}
+
+	</script>
+</head>
+<body>
+
+	<audio src=''> </audio>
+	<video >
+		<source src="2.mp4" type="">
+	</video>
+	<br/>
+	<input type='button' value='播放' class='p'/>
+	<span class='playTime'>00:00</span>
+	<input type='range' value='0' min='0' max='100' step='1' id='progress'/>
+	<span class='time'>00:00</span>
+	<input type='button' value='静音' id='mute'/>
+	<input type='range' value='20' min='0' max='20' step='1' id='speed'/>
+	<input type='button' value='<<' class='add'/>
+	<input type='button' value='>>' class='add'/>
+	<input type='button' value='全屏播放' id='big'/>
+</body>
+</html>
