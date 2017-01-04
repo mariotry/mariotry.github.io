@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: blue;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 9;
+            color:yellow;
+        }
+        #div11{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 150px;
+            top: 0;
+            z-index: 9;
+            color:yellow;
+        }
+        #div111{
+            width: 100px;
+            height: 100px;
+            background: pink;
+            position: absolute;
+            left: 300px;
+            top: 0;
+            z-index: 9;
+            color:yellow;
+        }
+        .box {
+            width:90%;
+            height:140px;
+            border:4px solid red;
+            position: absolute;
+            left: 50px;
+            top: 150px;
+        }
+        .div2{
+            width:90%;
+            height:100px;
+            background:blue;
+            position:left:50px;
+            top:20px;
+            color:white;
+        }
+    </style>
+    <script type="text/javascript" src="tween.js"></script>
+    <script type="text/javascript" src="mTweenPlus.js"></script>
+</head>
+<body>
+    <div id="div1">红苹果红苹果</div>
+    <div id='div11'>绿苹果绿苹果</div>
+    <div id='div111'>黄苹果黄苹果</div>
+    <div class='box'></div>
+    <script>
+        var div1 = document.getElementById('div1');
+        var div11 = document.getElementById('div11');
+        var div111 = document.getElementById('div111');
+        var box = document.getElementsByClassName('box')[0];
+        var onOff=false;
+        var yes=true;
+        drag(div1);
+        drag(div11);
+        drag(div111);
+        function drag(obj) {
+            obj.onmousedown = function(e) {
+
+                var disX = e.clientX - this.offsetLeft;
+                var disY = e.clientY - this.offsetTop;
+
+                document.onmousemove = function(e) {
+                    string=e.target.innerHTML;
+                    L = e.clientX - disX;
+                    T = e.clientY - disY;
+
+                    if (L < 0) {
+                        L = 0;
+                    } else if (L > window.innerWidth - obj.offsetWidth) {
+                        L = window.innerWidth - obj.offsetWidth;
+                    }
+
+                    if (T < 0) {
+                        T = 0;
+                    } else if (T > window.innerHeight - obj.offsetHeight) {
+                        T = window.innerHeight - obj.offsetHeight;
+                    }
+
+                    L1 = L;
+                    R1 = L + obj.offsetWidth;
+                    T1 = T;
+                    B1 = T + obj.offsetHeight;
+
+                    L2 = box.offsetLeft;
+                    R2 = L2 + box.offsetWidth;
+                    T2 = box.offsetTop;
+                    B2 = T2 + box.offsetHeight;
+
+//                    if ( R1 > L2 && L1 < R2 && B1 > T2 && T1 < B2 ) {
+//                        img1.src = '2.jpg';
+//                    } else {
+//                        img1.src = '1.jpg';
+//                    }
+
+                    
+
+                    obj.style.left = L + 'px';
+                    obj.style.top = T + 'px';
+                }
+
+                document.onmouseup = function() {
+                    change(div1,0,0)
+                    change(div11,150,0)
+                    change(div111,300,0)
+                    if ( R1 > L2 && L1 < R2 && B1 > T2 && T1 < B2 ) {
+                        box.innerHTML='';
+                        var div = document.createElement('div');
+                        div.innerHTML=string;
+                        box.appendChild(div);
+                        div.className='div2';
+                    } else {
+
+                    }                            
+                }
+                    
+
+                // return false;
+            }
+
+
+
+            function change(who,a,b){
+                MT(who,{
+                    left:{
+                        target:a,
+                        duration:80,
+                        fx:'linear',
+                        callback:function(){
+                            console.log('left');
+                        }
+                    },
+                    top:{
+                        target:b,
+                        duration:80,
+                        fx:'linear',
+                        callback:function(){
+                            console.log('top');
+                        }
+                    }
+                },function(){
+                    document.onmousemove = null;
+                });
+            }
+        }
+    </script>
+</body>
+</html>
