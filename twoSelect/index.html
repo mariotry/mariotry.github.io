@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		ul {
+			padding:0;
+			margin:0;
+			list-style:none;
+		}
+		.title{
+			width:100%;
+			height:40px;
+			margin-bottom:30px;
+		}
+		.title li{
+			width:100px;
+			height:100%;
+			border:1px solid black;
+			margin-right:30px;
+			text-align:center;
+			line-height:40px;
+			float:left;
+		}
+		.box{
+			width:660px;
+			height:300px;
+			background:green;
+			position:relative;
+		}
+		.content{
+			width:100%;
+			height:100%;
+			font-size:80px;
+			text-align:center;
+			line-height:300px;
+			position:absolute;
+			left:0;
+			top:0;
+			display:none;
+			color:white;
+		}
+		.active{
+			background:red;
+		}
+		.show{
+			display:block;
+		}
+	</style>
+</head>
+<body>
+	<div style='width:700px;margin:0 auto'>
+		<ul class='title'>
+			<li>盒子一</li>
+			<li>盒子二</li>
+			<li>盒子三</li>
+			<li>盒子四</li>
+			<li>盒子五</li>
+		</ul>
+		<div class='box'>
+			<div class='content'>内容一</div>
+			<div class='content'>内容二</div>
+			<div class='content'>内容三</div>
+		</div>
+	</div>
+	
+</body>
+<script type="text/javascript">
+	 var list = document.getElementsByClassName('title')[0].getElementsByTagName('li');
+	 var content = document.getElementsByClassName('content');
+	 // 功能初始化
+	 var arr=[0];
+	 list[0].className='active';
+	 content[0].className='content show';
+	 for(var i=0;i<list.length;i++){
+	 	list[i].status;
+	 	list[i].onOff=true;
+	 	list[i].index=i;
+	 	list[i].onclick=function(){
+	 		// 当点击的是第一个按钮时，修改开关并且生成自定义属性
+	 		if(this.status==undefined&&this.index==0){
+	 			this.onOff=false;
+	 			this.status='go';
+	 		}	 		
+	 		if(this.onOff){
+	 			// 因为只能有2个按钮为active,所以当arr的长度小于1的时候添加
+	 			if(arr.length<=1){
+	 				arr.push(this.index);
+	 			}else{
+	 				// 大于1的时候删除数组的第一个，然后再添加到末尾一个，以此循环。
+	 				arr.shift()
+	 				arr.push(this.index);
+	 			}
+	 			// console.log(arr[0],arr[1])
+	 			// 清空一下所有list的class
+	 			for(var i=0;i<list.length;i++){
+	 				list[i].className='';
+	 				list[i].onOff=true;
+	 				list[i].status='go';
+	 			}
+	 				//以数组的内容为下标给list添加active,并且修改开关;
+		 			list[arr[0]].className='active';
+		 			list[arr[1]].className='active';
+		 			list[arr[0]].onOff=false;
+		 			list[arr[1]].onOff=false;
+	 			
+	 			
+	 		}else{
+	 			//重复点击同一个按钮去掉class;
+	 			//如果arr的leng为1，表示只有一个按钮高亮了，再点击自己就不去掉高亮了。
+	 			if(arr.length!==1){
+	 				this.className='';
+	 				// 循环arr，看点击的是哪个，并且把对应arr里的下标删掉。
+		 			if(this.index==arr[0]){
+		 				arr.shift();
+		 			}else{
+	 					arr.pop();	 				
+		 			}
+		 			console.log('删',arr.length,arr);	 			
+		 			this.onOff=true;
+	 			}	 			
+	 			
+	 		}
+	 		
+	 	}
+	 }
+
+</script>
+</html>
