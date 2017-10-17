@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <style type="text/css">
+        html,body{
+            width:100%;
+            height:100%;
+            padding:0;
+            margin:0;
+            background:#fcfcee;
+        }
+        #header{
+            width:100%;
+            height:70px;
+            background:#e54728;
+            margin-top:0!important;
+            line-height:70px;
+            padding-left:30px;
+            margin-bottom:40px;
+        }
+        .addText{
+            width:100%;
+            height:50px;
+            padding:10px;
+            margin-top:20px;
+        }
+        .active{
+            box-shadow:0 0 3px 0px black;
+            background:#ededed;
+            border-radius:8px;
+        }
+        .tab a{
+            padding:10px;
+            display:inline-block;
+            margin-right:30px;
+            font-size:18px;
+        }
+        .tab{
+            margin-top:20px;
+            margin-bottom:30px;
+        }
+        li{
+            list-style:none;
+        }
+        .rw{
+            padding:0;
+        }
+        .rw li{
+            height:50px;
+            margin-top:3px;
+            border-bottom:1px solid #dbdbdb;
+            position:relative;
+        }
+        .main{
+            background:white;
+            padding:30px;
+        }
+        .innerText{
+            width:80%;
+            height:40px;
+            line-height:40px;
+            border:none;
+            font-size:20px;
+            padding-left:20px;
+        }
+        .complete{
+            color:#eaeaea;
+            text-decoration:line-through;
+        }
+        .destroy{
+            width:30px;
+            height:30px;
+            border-radius: 15px;
+            background:red;
+            position:absolute;
+            right:50px;
+            top:10px;
+            color:white;
+            font-weight:bold;
+        }
+        .view{
+            position:relative;
+        }
+        .rw .editing .edit{
+            display:block;
+            width:450px;
+            height:42px;
+            border:1px solid #dfdddd;
+            margin-top:4px;
+            font-size:16px;
+            padding-left:20px;
+        }
+        .rw .edit{
+            display:none;
+            width:450px;
+            margin-top:3px;
+            height:42px;
+            margin-left:60px;
+        }
+        .rw .editing .view{
+            display:none;
+
+        }
+        .rw .view{
+            display:block;
+        }
+    </style>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <header id="header" class="">
+        <div class='container'>
+            <h2 style='color:white'>任务计划列表</h2>
+        </div>
+    </header><!-- /header -->
+
+        <div class='container'>
+            <div class='content'>
+                <div style='font:20px/40px "微软雅黑"'>
+                    添加任务：
+                </div>
+                <div>
+                    <input type="text"
+                            name=""
+                            placeholder="例如：吃饭睡觉打豆豆，提示：+回车即可添加任务"
+                            class='addText'
+                            v-on:keyup.enter='addTodo'
+                            v-model='todo'
+                            >
+                </div>
+                <div class='tab clearfix' v-show='list.length'>
+                    <div class='pull-left' style='color:orange'>
+                        <span>{{
+                            todoLength
+                        }}个任务未完成</span>
+                    </div>
+
+                    <div class='pull-right'>
+                        <a  href='#all' class='active'>所有任务</a>
+                        <a href='#unfinished'>未完成任务</a>
+                        <a href='#finished'>完成的任务</a>
+                    </div>
+                </div>
+                <div style='font:20px/40px "微软雅黑";margin-top:20px;'>
+                    任务列表：
+                </div>
+                <div class='main'>
+                    <div style='color:#666;font-size:16px;' v-show='!list.length'>
+                        还没有添加任何任务
+                    </div>
+                    <ul class='rw'>
+                        <li v-for='item in already' :class='{editing:item===edtorTodo}' >
+                            <div class='view'>
+                                <input type='checkbox' class='toggle' style='margin:20px;' v-model = 'item.isChecked'>
+                                <label class='innerText' :class='{complete:item.isChecked}' @dblclick="enterChange(item)">{{item.title}}</label>
+                                <button class='destroy' @click='deleteData(item)'>X</button>
+                            </div>
+                            <input class='edit' type='text' v-model='item.title' v-focus='edtorTodo===item' @blur='edtorOk(item)' @keyup.13='edtorOk(item)' @keyup.esc= 'cancelEdit(item)'>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+
+
+</body>
+<script src="js/app.js"></script>
+</html>

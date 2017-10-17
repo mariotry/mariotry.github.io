@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            border:0;
+        }
+        ol, ul ,li{list-style: none;}
+        #list{
+            width:500px;
+            margin:100px auto;
+
+        }
+        #box{
+            width:400px;
+
+        }
+        #list li,#box li{
+            width:100%;
+            height:40px;
+            border:1px solid black;
+            text-align:center;
+            font:12px/40px '宋体';
+            position:relative;
+            box-sizing:border-box;
+        }
+        #list span,#box span{
+            height:12px;
+            width:12px;
+            line-height:12px;
+            cursor:pointer;
+        }
+
+    </style>
+    <script src="js/tween.js"></script>
+</head>
+<body>
+    <ul id='list'>
+        <li>让我心痛的不只是昨夜的酒你挽着我的衣袖，我把手揣进裤兜</li>
+        <li>让我心痛的不只是昨夜的酒你挽着我的衣袖，我把手揣进裤兜</li>
+        <li>让我心痛的不只是昨夜的酒你挽着我的衣袖，我把手揣进裤兜</li>
+        <li>让我心痛的不只是昨夜的酒你挽着我的衣袖，我把手揣进裤兜</li>
+        <li>让我心痛的不只是昨夜的酒你挽着我的衣袖，我把手揣进裤兜</li>
+
+    </ul>
+    <ul id='box'>
+        <li>开开心心过大年，平平安安回家去</li>
+        <li>开开心心过大年，平平安安回家去</li>
+        <li>开开心心过大年，平平安安回家去</li>
+        <li>开开心心过大年，平平安安回家去</li>
+    </ul>
+</body>
+<script type='text/javascript'>
+    var list = document.getElementById('list');
+    var li = list.getElementsByTagName('li');
+    var box = document.getElementById('box');
+    var li2 = box.getElementsByTagName('li');
+    var liHeight = li[0].offsetHeight;
+    textShake(li);
+    textShake(li2);
+    function textShake(who){
+        var n;
+        for(var i=0;i<who.length;i++){
+            var str = who[i].innerHTML;
+            who[i].innerHTML='';
+            for(var j=0;j<str.length;j++){
+                who[i].innerHTML += '<span>'+str[j]+'</span>';
+            }
+            var spanChild = who[i].children;
+            var spanHeight = spanChild[0].offsetHeight;
+            for(var j=0;j<spanChild.length;j++){
+                spanChild[j].style.left = spanChild[j].offsetLeft+'px';
+                spanChild[j].style.top = spanChild[j].offsetTop+'px';
+                spanChild[j].startTop = spanChild[j].offsetTop;
+            }
+            // console.log(startTop);
+            for(var j=0;j<spanChild.length;j++){
+                spanChild[j].style.position='absolute';
+                (function(spanChild,nub2){
+                    var isStart = 0;
+                    spanChild[nub2].onmouseover=function(e){
+                        isStart = e.clientY;
+                    }
+                    spanChild[nub2].onmousemove=function(e){
+                        var iDis  = e.clientY-isStart;
+                        n = iDis>0?1:-1;
+                        if(this.startTop+iDis>=0&&this.startTop+iDis<(liHeight-spanHeight)){
+                            for(var j = 0;j<spanChild.length;j++){
+                                if(Math.abs(iDis)>Math.abs(nub2-j)){
+
+                                    spanChild[j].style.top = spanChild[j].startTop+(Math.abs(iDis)-Math.abs(nub2-j))*n+'px';
+                                }
+                                else{
+                                    spanChild[j].style.top = spanChild[j].startTop+'px';
+                                }
+                            }
+                        }
+                    }
+                    spanChild[nub2].onmouseout=function(){
+                        for(var j=0;j<spanChild.length;j++){
+                            mtween(spanChild[j],'top',spanChild[j].startTop,500,'elasticOut')
+
+                        }
+                    }
+                })(spanChild,j);
+            }
+        }
+    }
+
+</script>
+</html>
