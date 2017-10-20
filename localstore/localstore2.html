@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <script type="text/javascript" src='jquery-3.1.0.min.js'></script>
+</head>
+<body>
+    <div>
+        <label for="">姓名：</label>
+        <input type="text" >
+    </div>
+    <div>
+        <label for="">性别：</label>
+        <input type="text" >
+    </div>
+    <div>
+        <label for="">年龄：</label>
+        <input type="text" >
+    </div>
+    <div>
+        <label>请选择下列对的一项</label>
+        <input type="radio" name='month' value='一月'>一月
+        <input type="radio" name='month' value='二月'>二月
+        <input type="radio" name='month' value='三月'>三月
+        <input type="radio" name='month' value='四月'>四月
+    </div>
+    <div>
+        <label>请选择下列对的一项</label>
+        <input type="radio" name='year' value='2014' >2014
+        <input type="radio" name='year' value='2015'>2015
+        <input type="radio" name='year' value='2016'>2016
+        <input type="radio" name='year' value='2017'>2017
+    </div>
+    <div>
+        <label>请选择下列对的一项</label>
+        <input type="radio" name='day' value='2014' >1日
+        <input type="radio" name='day' value='2015'>2日
+        <input type="radio" name='day' value='2016'>3日
+        <input type="radio" name='day' value='2017'>4日
+    </div>
+    <div>
+        <label>请选择下列对的一项</label>
+        <input type="radio" name='hover' value='2014' >1小时
+        <input type="radio" name='hover' value='2015'>2小时
+        <input type="radio" name='hover' value='2016'>3小时
+        <input type="radio" name='hover' value='2017'>4小时
+    </div>
+<!--     <button type="button">提交</button> -->
+</body>
+<script>
+    var input = $('input[type=text]');
+    console.log(input);
+    var button = document.getElementsByTagName('button')[0];
+    var radios = $('input[type=radio]');
+    var n = $('input[name="year"]:checked').val();
+    var n2 = $('input[name="onlyOne"]:checked').val();
+    var dataText,dataRadio
+    // 检测localStorage中是否已有缓存
+    // window.localStorage.removeItem('data');
+    // window.localStorage.removeItem('dataRadios');
+    dataText = returnObj('data',dataText)
+    for(attr in dataText){
+        input[attr].value = dataText[attr];
+    }
+    dataRadio = returnObj('dataRadios',dataRadio);
+    for(attrs in dataRadio){
+        $('input[name='+attrs+']').each(function(){
+            if($(this).val()==dataRadio[attrs]){
+                $(this).attr('checked',true);
+            }
+        });
+    }
+    for(let i=0;i<input.length;i++){
+        input[i].oninput=function(){            
+            saveObj(dataText,i,input[i].value,'data')
+        }
+    }
+    //找到radio的所有属性添加到数组
+    var arr=[];
+    for(var i=0;i<radios.length;i++){
+        arr.push(radios[i].getAttribute('name'));
+    }
+    //数组去重
+    var obj = {};
+    var newArr = [];
+    for( var i = 0; i < arr.length; i++ ){
+        //如果对象中不存在当前的属性
+        if( !obj[arr[i]] ){
+            //不存在就放在新数组中 
+            newArr.push(arr[i]);
+            //给这个属性赋一个值，让其存在对象中
+            obj[arr[i]] = true;
+        }
+    }
+    //存radio数据
+    for(let i=0;i<newArr.length;i++){
+        $('input[name='+newArr[i]+']').on('change',function(){
+            saveObj(dataRadio,newArr[i],$(this).val(),'dataRadios')
+        })
+    }
+    //存数据封装
+    function saveObj(a,b,c,oTarget){
+        a[b] = c;
+        var d=JSON.stringify(a);
+        window.localStorage.setItem(oTarget, d);
+    }
+    //返回本地存储数据
+    function returnObj (a,b){
+        if(window.localStorage.getItem(a)) {
+            var json = window.localStorage.getItem(a);
+            var jsonObj=JSON.parse(json);
+            b = jsonObj;
+        }else{
+            b={};
+        }
+        return b;
+    }
+</script>
+</html>
