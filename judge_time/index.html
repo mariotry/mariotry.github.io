@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+
+</body>
+<script>
+var start = "2017-09-05-17-51-0";
+var stop = "2018-09-05-17-51-30";
+JudgeTime(start,stop)
+    function JudgeTime(a,b)
+    {
+        console.log(a,b)
+        //将计划开始时间转成以秒为单位：
+        var   planStartTime = a;
+        var startTime = new Array();
+        startTime = planStartTime.split('-');
+        planStartTime = Date.UTC(parseInt(startTime[0]), parseInt(startTime[1]), parseInt(startTime[2]),parseInt(startTime[3]),parseInt(startTime[4]),parseInt(startTime[5]));
+        //将计划结束时间转成以秒为单位：
+        var planStopTime = b;
+        var stopTime = new Array();
+        stopTime = planStopTime .split('-');
+
+        planStopTime = Date.UTC(parseInt(stopTime[0]), parseInt(stopTime[1]), parseInt(stopTime[2]),parseInt(stopTime[3]),parseInt(stopTime[4]),parseInt(stopTime[5]));
+        //将当前系统时间转化成以秒为单位：
+        //获取当前时间
+        var nowDate = new Date();
+        //当前年
+        var nowYear = nowDate.getFullYear();
+        //当前月，记得要加1
+        var nowMonth = (nowDate.getMonth() + 1);
+        //当前日
+        var nowDay = nowDate.getDate();
+        //时
+        var nowhours = nowDate.getHours();
+        //分
+        var nowminutes = nowDate.getMinutes();
+        //秒
+        var nowSeconds = nowDate.getSeconds();
+        console.log(nowYear,nowMonth,nowDay,nowhours,nowminutes,nowSeconds)
+        nowTime = Date.UTC(nowYear,nowMonth,nowDay,nowhours,nowminutes,nowSeconds);
+        //判断：如果当前系统时间大于等于开始时间以及小于等于结束时间则登记成功
+        console.log(nowTime,planStartTime,planStopTime)
+         if (nowTime >= planStartTime && nowTime <= planStopTime) {
+              alert('当前时间：'+nowDate+'在'+start+'和'+stop+'时间段之间')
+              return true;
+
+        } else {
+            alert('当前时间：'+nowDate+'不在'+start+'和'+stop+'时间段之间')
+            return false;
+        }
+    }
+</script>
+</html>
