@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <title>自定义工具栏 - Editor.md examples</title>
-        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/styles.css" />
         <link rel="stylesheet" href="css/editormd.css" />
         <link rel="shortcut icon" href="https://pandao.github.io/editor.md/favicon.ico" type="image/x-icon" />
 <!--         <link href="../dist/stylesheets/user/thinker-md.user.min.css" rel="stylesheet">
@@ -132,23 +132,23 @@ python manage.py runserver 0.0.0.0:port
 
         <script src="js/jquery.min.js"></script>
         <script src="js/zepto.min.js"></script>
-        <script src="../editormd.js"></script>
+        <script src="editormd.js"></script>
         <!--获取html-->
-        <script src="../lib/marked.min.js"></script>
-        <script src="../lib/prettify.min.js"></script>
-        <script src="../lib/raphael.min.js"></script>
-        <script src="../lib/underscore.min.js"></script>
-        <script src="../lib/sequence-diagram.min.js"></script>
-        <script src="../lib/flowchart.min.js"></script>
-        <script src="../lib/jquery.flowchart.min.js"></script>
+        <script src="lib/marked.min.js"></script>
+        <script src="lib/prettify.min.js"></script>
+        <script src="lib/raphael.min.js"></script>
+        <script src="lib/underscore.min.js"></script>
+        <script src="lib/sequence-diagram.min.js"></script>
+        <script src="lib/flowchart.min.js"></script>
+        <script src="lib/jquery.flowchart.min.js"></script>
         <!-- 多语言和自定义工具栏的整合测试 -->
-        <script src="../en.js"></script>
+        <script src="en.js"></script>
         <script type="text/javascript">
             $(function() {
                 var testEditor = editormd("test-editormd", {
                     width: "90%",
                     height: 640,
-                    path : '../lib/',//文件引用路径
+                    path : 'lib/',//文件引用路径
                     saveHTMLToTextarea : true,//开启转换markdown转换为html
                     watch : true,//初始化开始实时监控
                     placeholder:'输入内容……',//编辑器默认没有文字时提示
